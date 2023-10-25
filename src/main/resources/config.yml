@@ -1,0 +1,231 @@
+# Database configuration.
+# It's used for saving custom nicknames.
+database:
+  # Available types: mysql, sqlite
+  type: 'sqlite'
+  # Path for SQLite database file
+  path: 'database.db'
+
+  # Connection info for MySQL database type
+  # Host of your db
+  host: 'localhost'
+  # Default is 3306, don't touch it if you didn't change it in your db configuration
+  port: '3306'
+  # Default: 6
+  max-connections: 6
+  # Name of database
+  name: 'dbname'
+  # Login to db account
+  login: 'user'
+  # Password to db account
+  password: 'password'
+
+commands:
+  clearchat:
+    # Count of clear lines to send to players
+    empty-lines: 125
+
+  reply:
+    # Whether to check if receiver vanished,
+    # if sender doesn't have 'ychatmanager.command.message.vanished' permission
+    check-vanish: false
+
+  # Cooldowns in ticks betweeen executing commands.
+  #  - 20 ticks = 1 second
+  #  - Set any cooldown to 0 to disable it.
+  #  - same-command cooldown is supposed to be higher
+  #    than any-command cooldown. Because sending
+  #    the same command again, is easier and quicker,
+  #    than executing other command, so it can be used
+  #    for spamming. If same-command cooldown, will be
+  #    lower than any-command, then it won't have any
+  #    effect.
+  cooldowns:
+    # Cooldown between any command
+    any-command: 20
+    # Cooldown between the same commands,
+    # where different arguments equal a different command.
+    same-command: 40
+
+
+private-messages:
+  # Show social spy in the console
+  console-socialspy: true
+  # Sound to be played on received message
+  receive-sound:
+    enabled: true
+    # You can find sound list here: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+    name: 'entity.arrow.hit_player'
+    # And category list here: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/SoundCategory.html
+    category: 'PLAYERS'
+    volume: 0.8
+    pitch: 1
+
+# Displayname formatting
+displayname:
+  enabled: true
+  # Available placeholders:
+  # {nick}, {uuid}, {username}
+  # And if Vault is present:
+  # {prefix}, {suffix}, {group},
+  # (nick can be changed with a command; username will always be an original unformatted name)
+  # You can also use PAPI placeholders, and MiniMessage formatting.
+  format: "{prefix}{nick}{suffix}"
+
+join-message:
+  change: true
+  # Available placeholders:
+  # {nick}, {uuid}, {username}, {displayname}
+  # And if Vault is present:
+  # {prefix}, {suffix}, {group},
+  # Set empty ('') to disable join message
+  # You can also use PAPI placeholders, and MiniMessage formatting.
+  format: '<light_purple>{displayname}<reset> <dark_purple>joined the game!'
+
+quit-message:
+  change: true
+  # Available placeholders:
+  # {nick}, {uuid}, {username}, {displayname}
+  # And if Vault is present:
+  # {prefix}, {suffix}, {group},
+  # Set empty ('') to disable quit message
+  # You can also use PAPI placeholders, and MiniMessage formatting.
+  format: '<light_purple>{displayname}<reset> <dark_purple>left the game!'
+
+chat:
+  formatting:
+    enabled: true
+    # Available placeholders:
+    # {nick}, {uuid}, {username}, {displayname}, {message}
+    # And if Vault is present:
+    # {prefix}, {suffix}, {group}
+    # You can also use PAPI placeholders, and MiniMessage formatting.
+    format: '<hover:show_text:"<#9df037>Player: <#f2f244>{username}<reset><br><#9df037>Level: <#f2f244>%player_level%<br><#9df037>Rank: <#f2f244>{group}">{displayname}</hover><reset> <dark_gray>>> <hover:show_text:"<#9df037>Send time: <#f2f244>%server_time_HH:mm:ss%"><gray>{message}</hover>'
+
+  # RegEx pattern that a message has to match, to be allowed to be sent.
+  # Set empty ('') to disable.
+  allowed-pattern: '^[\w!@#$%^&§*()_+{}:"\\|<>?\-=\[\];''\,\./~€ąćżźłóęńśĄĆŻŹŁÓĘŃŚ ]*$'
+
+  # Cooldown in ticks between sending messages.
+  # 20 ticks = 1 second
+  # Set 0 to disable.
+  message-cooldown: 30
+
+  anti-flood:
+    # Whether to enable anti-flood.
+    enabled: true
+
+    # Patterns to check for flood
+    # - You can add how many you want, by copying existing ones,
+    #   and changing the name, 'pattern' and 'shorted'.
+    # - You can also disable any pattern, by commenting it.
+    # - 'shorted' will repeat string from capture group 1.
+    # - Patterns are case-insensitive.
+    # - They will be check in order, that they are here,
+    #   so in default case: long-words -> any-string -> chars
+    patterns:
+      long-words:
+        # Pattern for words longer than 40 characters.
+        pattern: '[^ ]{40,}'
+        # 0 means that the match will be just removed from the message
+        shorted: 0
+      any-string:
+        # This pattern matches any repeatedrepeatedrepeatedrepeated string more than 3 times
+        pattern: '(.{2,}?)\1{3,}'
+        # And shortens it to 2 repetitions: repeatedrepeated
+        shorted: 2
+      chars:
+        # 'pattern' is a RegEx pattern.
+        # In this case, matching reeeeeepeaaaaaatiiiiiing chars, above 5 repetitions.
+        pattern: '(.)\1{5,}'
+        # And shorting them to only 4 repetitions: reeeepeaaaatiiiing
+        shorted: 4
+#      some-other-check:
+#        pattern: 'i+ l+i+k+e+ p+i+z{2,}a+'
+#        shorted: 0
+
+    # Whether to check online players usernames,
+    # that will bypass anti-flood.
+    check-usernames: true
+    # Whether to log matched messages in the console
+    console-log: false
+
+  anti-caps:
+    # Whether to enable anti-caps.
+    enabled: true
+    # Max count of upper case characters in one message.
+    # Every next character will be lower-cased.
+    max-chars: 10
+    # Whether to check online players usernames,
+    # that will bypass anti-caps.
+    check-usernames: true
+
+  anti-swear:
+    # Whether to enable anti-swearing.
+    enabled: true
+    # Character that will replace each character of a word.
+    replacement-char: '*'
+    # RegEx patterns that will be used to match swear words.
+    # Ignore case flag will be used, so you don't have to worry about that.
+    # Keep in mind that it's a YAML file, so some chars need to be escaped (like ' or ").
+    pattern:
+      # The start of the pattern
+      start: '[!@#$%^&*()_+{}:"|<>?\-=\[\];''\,\./]*\b(\w{0,2}(\d|_|&[a-f0-9k-o])*'
+      # The end
+      end: '+[^\s]*)\b'
+      # And separator, that will be between word characters
+      separator: '+((\W|\d|_|&[a-f0-9k-o])*|[^\s])'
+      # Finished pattern will look like this:
+      # {start}s{separator}w{separator}e{separator}a{separator}r{end}
+      # So in this example:
+      # [!@#$%^&*()_+{}:"|<>?\-=\[\];'\,\./]*\b(\w{0,2}(\d|_|&[a-f0-9k-o])*s+(\W|\d|_|&[a-f0-9k-o])*w+(\W|\d|_|&[a-f0-9k-o])*e+(\W|\d|_|&[a-f0-9k-o])*a+(\W|\d|_|&[a-f0-9k-o])*r+[^\s]*)\b
+
+      # Chars that will be replaced, before checking swear words
+      # (Char from the left, replaced by a char form the right)
+      replacements:
+        0: o
+        1: i
+        3: e
+        4: a
+        5: s
+        7: t
+        9: g
+        '@': a
+        '$': s
+        '€': e
+        '!<': k
+        ą: a
+        ć: c
+        ę: e
+        ł: l
+        ń: n
+        ó: o
+        ź: z
+        ż: z
+
+
+    # Check for exceptions from file that will bypass swear words.
+    check-exceptions: true
+    # Whether to check online players usernames,
+    # that will bypass anti-swear.
+    check-usernames: false
+    # Whether to log matched messages in the console
+    console-log: false
+
+    # Punishments
+    punishment:
+      # Whether to enable warnings and punishments.
+      enabled: true
+      # Warnings count before punishing.
+      # Set 0 to disable warnings and execute punishment right away.
+      # Set -1 to disable punishments but leave warnings
+      warnings: 2
+      # After how many minutes warning expires.
+      warning-expire: 20
+      # Command to be executed as a punishment.
+      # Placeholders:
+      # {player} - player's username
+      # {warnings} - warnings count
+      command: 'mute {player} 10m Swearing on the server ~Console'
+      # Hours at which neither warnings nor punishments will be active.
+      excluded-hours: [ 23, 0, 1, 2, 3, 4, 5, 6 ]

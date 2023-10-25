@@ -1,0 +1,17 @@
+pl.ynfuien.ychatmanager
+pl.ynfuien.ychatmanager.api
+pl.ynfuien.ychatmanager.api.events
+pl.ynfuien.ychatmanager.chat
+pl.ynfuien.ychatmanager.commands
+pl.ynfuien.ychatmanager.commands.subcommands
+pl.ynfuien.ychatmanager.commands.subcommands.antiswear
+pl.ynfuien.ychatmanager.config
+pl.ynfuien.ychatmanager.config.updater
+pl.ynfuien.ychatmanager.hooks
+pl.ynfuien.ychatmanager.hooks.placeholderapi
+pl.ynfuien.ychatmanager.hooks.placeholderapi.placeholders
+pl.ynfuien.ychatmanager.hooks.vault
+pl.ynfuien.ychatmanager.listeners
+pl.ynfuien.ychatmanager.modules
+pl.ynfuien.ychatmanager.storage
+pl.ynfuien.ychatmanager.utils

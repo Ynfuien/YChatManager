@@ -1,0 +1,62 @@
+package pl.ynfuien.ychatmanager.listeners;
+
+import net.kyori.adventure.text.minimessage.tag.standard.StandardTags;
+import org.bukkit.Bukkit;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerQuitEvent;
+import pl.ynfuien.ychatmanager.YChatManager;
+import pl.ynfuien.ychatmanager.chat.ChatFormatter;
+import pl.ynfuien.ychatmanager.modules.CommandCooldownsModule;
+import pl.ynfuien.ychatmanager.modules.DisplaynameModule;
+import pl.ynfuien.ychatmanager.modules.Modules;
+import pl.ynfuien.ychatmanager.storage.Storage;
+
+public class PlayerQuitListener implements Listener {
+    private final YChatManager instance;
+    private final DisplaynameModule displaynameModule;
+    private final CommandCooldownsModule commandCooldownsModule;
+
+    public PlayerQuitListener(YChatManager instance) {
+        this.instance = instance;
+        Modules modules = instance.getModules();
+        this.displaynameModule = modules.getDisplaynameModule();
+        this.commandCooldownsModule = modules.getCommandCooldownsModule();
+    }
+
+    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
+    public void onPlayerQuit(PlayerQuitEvent event) {
+        // Remove nickname from cache
+        Player p = event.getPlayer();
+        Bukkit.getScheduler().runTaskLaterAsynchronously(instance, () -> {
+            if (p.isOnline()) return;
+            Storage.removeNickFromCache(p.getUniqueId());
+        }, 10 * 20);
+
+        // Remove command cooldowns from cache
+        Bukkit.getScheduler().runTaskLaterAsynchronously(instance, () -> {
+            if (p.isOnline()) return;
+            commandCooldownsModule.removePlayerFromCache(p.getUniqueId());
+        }, 60 * 20);
+
+        // Format quit message
+        ConfigurationSection config = instance.getConfig().getConfigurationSection("quit-message");
+        if (!config.getBoolean("change")) return;
+
+        String format = config.getString("format");
+        if (format.length() == 0) {
+            event.quitMessage(null);
+            return;
+        }
+
+        displaynameModule.updateDisplayname(p);
+        format = ChatFormatter.parseTemplatePlaceholders(format, ChatFormatter.createPlayerPlaceholders(p));
+        format = ChatFormatter.parsePAPI(p, format);
+        format = format.replace('§', '&');
+
+        event.quitMessage(ChatFormatter.SERIALIZER.deserialize(format, StandardTags.defaults()));
+    }
+}

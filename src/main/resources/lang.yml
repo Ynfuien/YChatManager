@@ -1,0 +1,116 @@
+##########################
+#                        #
+#  Lang file by Ynfuien  #
+#                        #
+##########################
+
+
+#### Quick info:
+# 1. If you don't want a message to be sent, just set it empty - ''
+
+# 2. You can use MiniMessage formatting for custom colors and formats!
+# If you don't know how, then here is documentation:
+# https://docs.advntr.dev/minimessage/format.html
+
+# 3. PlaceholderAPI is supported
+
+# 4. Plugin placeholders are within curly brackets - {placeholder}
+# If you add an exclamation mark (!) before placeholder name - {!placeholder},
+# then it won't be formatted in any way. It's useful for user input placeholders,
+# so they won't be formatted by what player enters.
+
+
+# Prefix that will be used for {prefix} placeholder
+prefix: '<dark_aqua>[<bold><aqua>Y<white>ChatManager</bold><dark_aqua>]<reset>'
+
+plugin-is-reloading: '{prefix} <red>Plugin is reloading, wait a second..'
+
+commands-incorrect: '{prefix} <red>Incorrect command! Use /{command} help, for help.'
+commands-no-permission: '{prefix} <red>You don''t have permission for this command!'
+
+# Main
+#command-main-help: '{prefix} <aqua>Avaiable commands: /{command} <reload | help | version | anti-swear>.'
+
+help-no-commands: '{prefix} <red>You don''t have permission for any command!'
+help-top: '{prefix} <dark_aqua>Available commands:'
+help-command-template: '<click:suggest_command:"/{command}"><hover:show_text:"Click to enter the command"><blue>/{command}</click> <white>- <aqua>{description}'
+
+command-admin-anti-swear-description: 'Manages anti-swear module'
+command-admin-reload-description: 'Reloads plugin configuration'
+command-admin-help-description: 'Shows available commands'
+command-admin-version-description: 'Displays info about plugin'
+
+
+command-main-reload-fail: '{prefix} <red>An error occurred while reloading plugin. Take a look in the console for more information!'
+command-main-reload-success: '{prefix} <aqua>Plugin was <green>successfully <aqua>reloaded!'
+
+command-main-version: '{prefix} <dark_aqua>Plugin info:<newline>{prefix} <aqua>Name: <white>{name}<newline>{prefix} <aqua>Version: <green>{version}<newline>{prefix} <aqua>Author: <click:open_url:"{website}"><hover:show_text:"{website}"><white>{author}</click>'
+
+command-anti-swear-usage: '{prefix} <gray>Command usage: /{command} anti-swear <words | exceptions> <add | get | remove> <word | exception>'
+command-anti-swear-words-usage: '{prefix} <red>Command usage: /{command} anti-swear words <add | get | remove> <word>'
+command-anti-swear-words-fail-no-word: '{prefix} <red>Command usage: /{command} anti-swear words {!argument} <word>'
+command-anti-swear-words-fail-already-exists: '{prefix} <red>This word is already added to the list'
+command-anti-swear-words-fail-doesnt-exist: '{prefix} <red>This word isn''t on the list!'
+command-anti-swear-words-added: '{prefix} <green>Added <aqua>word <yellow>''{word}'' <aqua>to the list!'
+command-anti-swear-words-removed: '{prefix} <red>Removed <aqua>word <yellow>''{word}'' <aqua>from the list!'
+command-anti-swear-words-got:
+  - '{prefix} <dark_aqua><bold>Word information:'
+  - '<blue>Word: <aqua>{word}'
+  - '<blue>Normal pattern: <aqua><click:copy_to_clipboard:"{pattern-normal}"><hover:show_text:"<yellow>{pattern-normal}">(hover)</hover></click>'
+  - '<blue>Pattern with replacements: <aqua><click:copy_to_clipboard:"{pattern-replacements}"><hover:show_text:"<yellow>{pattern-replacements}">(hover)</hover></click>'
+  - '<gray>(Click a pattern, to copy it to a clipboard)'
+command-anti-swear-exceptions-usage: '{prefix} <red>Command usage: /{command} anti-swear exceptions <add | remove> <exception>'
+command-anti-swear-exceptions-fail-no-exception: '{prefix} <red>Specify an exception that you want to add or remove!'
+command-anti-swear-exceptions-fail-already-exists: '{prefix} <red>This exception is already added to the list'
+command-anti-swear-exceptions-fail-doesnt-exist: '{prefix} <red>This exception isn''t on the list!'
+command-anti-swear-exceptions-added: '{prefix} <green>Added <aqua>exception <yellow>''{exception}'' <aqua>to the list!'
+command-anti-swear-exceptions-removed: '{prefix} <red>Removed <aqua>exception <yellow>''{exception}'' <aqua>from the list!'
+
+
+command-message-usage: '{prefix} <gray>Send private message to a player: /{command} <player> <message>'
+command-message-fail-player-isnt-online: '{prefix} <red>Provided player is not online!'
+
+command-reply-usage: '{prefix} <gray>Reply last messaged player: /{command} <message>'
+command-reply-fail-player-isnt-online: '{prefix} <red>Last messaged player is not online!'
+command-reply-fail-no-receiver: '{prefix} <red>You didn''t message anyone yet!'
+
+# Placeholders: {sender-nick}, {sender-uuid}, {sender-username}, {sender-displayname}, {message}
+# And also: {receiver-nick}, {receiver-uuid}, {receiver-username}, {receiver-displayname}
+private-message-sent: '<gold>[<red>me <gold>-> <red>{receiver-displayname}<reset><gold>] <white>{!message}'
+private-message-receive: '<gold>[<red>{sender-displayname}<reset> <gold>-> <red>me<gold>] <white>{!message}'
+private-message-socialspy: '<white>[<gold>SS<white>] <gold>[<red>{sender-displayname}<reset> <gray>-> <red>{receiver-displayname}<gold>] <gray>{!message}'
+
+
+command-nick-usage: '{prefix} <gray>Set custom nick: /{command} <nick>'
+command-nick-usage-others: '{prefix} <gray>For other player: /{command} <player> <nick>'
+command-nick-fail-not-permitted: '{prefix} <hover:show_text:"<gray>Here is your nick, stripped from formats, that you have access to: <white>{!nick}"><red>You used color/format that you don''t have access to!</hover>'
+command-nick-fail-only-formats: '{prefix} <hover:show_text:"<gray>You probably used color/format/tag that you don''t have access to.<br>Here is your nick, stripped from formats, that you have access to: <white>{!nick}"><red>You can only change colors and formats! Username has to stay the same.</hover>'
+command-nick-fail-unsafe: '{prefix} <hover:show_text:"<gray>You probably used color/format/tag that you don''t have access to.<br>Here is your nick, stripped from formats, that you have access to: <white>{!nick}"><red>You can''t use unsafe characters (like #, $, *, etc.)!</hover>'
+command-nick-fail-too-long: '{prefix} <hover:show_text:"<gray>You probably used color/format/tag that you don''t have access to.<br>Here is your nick, stripped from formats, that you have access to: <white>{!nick}"><red>Provided nickname is too long!</hover>'
+command-nick-fail-too-short: '{prefix} <red>Provided nickname is too short!'
+command-nick-fail-player-doesnt-exist: '{prefix} <red>This player was never on the server!'
+command-nick-success: '{prefix} <aqua>Changed nickname to <white>{nick}<reset><aqua>!'
+command-nick-success-other: '{prefix} <aqua>Changed <dark_aqua>{player}''s <aqua>nickname to <white>{nick}<reset><aqua>!'
+
+command-clearchat-prefix: '<dark_aqua>[<blue><bold>Clear<aqua>Chat</bold><dark_aqua>]<reset>'
+command-clearchat-info-admins:
+  - '{clearchat-prefix} <blue>--------------------------------'
+  - '{clearchat-prefix}'
+  - '{clearchat-prefix}'
+  - '{clearchat-prefix} {message}'
+  - '{clearchat-prefix}'
+  - '{clearchat-prefix}'
+  - '{clearchat-prefix} <blue>--------------------------------'
+command-clearchat-info-admins-sender: '<aqua>Cleared chat! <gray>(Only for other players)'
+command-clearchat-info-admins-other-admin: '<aqua>Chat has been cleared by <dark_aqua>{player}<aqua>!'
+command-clearchat-info-players: "{prefix} <aqua>Chat has been cleared!"
+
+command-cooldown: '{prefix} <red>Wait a second before using next command!'
+
+# Placeholders: {nick}, {uuid}, {username}, {displayname}, {message}
+chat-anti-swear-alert: "{prefix} <gray>Player <yellow>{username} <dark_red>swore <gray>in message <red>{message}<gray>!"
+chat-anti-swear-warning: "{prefix} <red>Do not swear! Next time you can be punished."
+
+chat-cooldown: '{prefix} <red>Wait a second before you send next message!'
+
+chat-incorrect-message: '{prefix} <red>You used not allowed character(s) in your message!'
