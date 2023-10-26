@@ -22,8 +22,6 @@ Plugin requires at least [Paper](https://github.com/PaperMC/Paper), won't work o
 - Custom nicknames using simple command, where every MiniMessage tag and legacy format is available per permission.
 - Clear chat command.
 - Join and quit messages, also with an option to disable them.
-
-
 - Fully customizable messages with lang file, supporting [PlaceholderAPI](https://github.com/PlaceholderAPI/PlaceholderAPI) and [MiniMessage](https://docs.advntr.dev/minimessage/index.html)
 - PAPI placeholders to use in other plugins [(Click)](https://github.com/Ynfuien/YChatManager/wiki/Placeholders)
 - Commands with tab completions
