@@ -117,32 +117,32 @@ chat:
 
     # Patterns to check for flood
     # - You can add how many you want, by copying existing ones,
-    #   and changing the name, 'pattern' and 'shorted'.
+    #   and changing the name, 'pattern' and 'replacement'.
     # - You can also disable any pattern, by commenting it.
-    # - 'shorted' will repeat string from capture group 1.
     # - Patterns are case-insensitive.
     # - They will be check in order, that they are here,
-    #   so in default case: long-words -> any-string -> chars
+    #   so in default case: long-words -> chars -> any-string.
+    #   Order does matter, when patters can overlap each other,
+    #   like now 'chars' and 'any-string'.
     patterns:
       long-words:
         # Pattern for words longer than 40 characters.
-        pattern: '[^ ]{40,}'
-        # 0 means that the match will be just removed from the message
-        shorted: 0
+        pattern: '([^ ]{10})[^ ]{30,}'
+        # Replacing those with only first 10 letters, and 3 dots
+        replacement: '$1...'
+      chars:
+        # In this case, matching reeeeeepeaaaaaatiiiiiing chars, above 5 repetitions.
+        pattern: '(.)\1{5,}'
+        # And shorting them to only 4 repetitions: reeeepeaaaatiiiing
+        replacement: '$1$1$1$1'
       any-string:
         # This pattern matches any repeatedrepeatedrepeatedrepeated string more than 3 times
         pattern: '(.{2,}?)\1{3,}'
         # And shortens it to 2 repetitions: repeatedrepeated
-        shorted: 2
-      chars:
-        # 'pattern' is a RegEx pattern.
-        # In this case, matching reeeeeepeaaaaaatiiiiiing chars, above 5 repetitions.
-        pattern: '(.)\1{5,}'
-        # And shorting them to only 4 repetitions: reeeepeaaaatiiiing
-        shorted: 4
+        replacement: '$1$1'
 #      some-other-check:
 #        pattern: 'i+ l+i+k+e+ p+i+z{2,}a+'
-#        shorted: 0
+#        replacement: ''
 
     # Whether to check online players usernames,
     # that will bypass anti-flood.

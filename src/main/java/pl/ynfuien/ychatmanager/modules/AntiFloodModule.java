@@ -42,16 +42,22 @@ public class AntiFloodModule {
                 return false;
             }
 
-            if (!patternSection.isInt(name+".shorted")) {
-                logError(String.format("'shorted' for check '%s' is incorrect or doesn't exist!", name));
+            String replacement = patternSection.getString(name+".replacement");
+            if (replacement == null) {
+                logError(String.format("Replacement for check '%s' doesn't exist!", name));
                 return false;
             }
 
-            int shorted = patternSection.getInt(name+".shorted");
-            if (shorted < 0) {
-                shorted = 0;
-                logError(String.format("'shorted' for check '%s' is below 0!", name));
-            }
+//            if (!patternSection.isInt(name+".shorted")) {
+//                logError(String.format("'shorted' for check '%s' is incorrect or doesn't exist!", name));
+//                return false;
+//            }
+
+//            int shorted = patternSection.getInt(name+".shorted");
+//            if (shorted < 0) {
+//                shorted = 0;
+//                logError(String.format("'shorted' for check '%s' is below 0!", name));
+//            }
 
             Pattern pattern;
             try {
@@ -61,7 +67,7 @@ public class AntiFloodModule {
                 e.printStackTrace();
                 return false;
             }
-            floodPatterns.add(new FloodPattern(name, pattern, shorted));
+            floodPatterns.add(new FloodPattern(name, pattern, replacement));
         }
 
         return true;
@@ -85,13 +91,14 @@ public class AntiFloodModule {
 
         HashMap<FloodPattern, List<String>> logMatches = new LinkedHashMap<>();
         for (FloodPattern pattern : floodPatterns) {
-            Matcher matcher = pattern.pattern.matcher(message);
+            Pattern regex = pattern.pattern;
+            Matcher matcher = regex.matcher(message);
 
             while (matcher.find()) {
-                String match = matcher.group(0);
+                String match = matcher.group();
                 if (consoleLog && !logMatches.containsKey(pattern)) logMatches.put(pattern, new ArrayList<>());
 
-                String replacement = matcher.groupCount() > 0 && pattern.shorted > 0 ? matcher.group(1).repeat(pattern.shorted) : "";
+                String replacement = match.replaceFirst(regex.pattern(), pattern.replacement);
                 if (consoleLog) logMatches.get(pattern).add(String.format("'%s' - '%s'", match, replacement));
 
                 message = message.replace(match, replacement);
@@ -126,5 +133,6 @@ public class AntiFloodModule {
         return consoleLog;
     }
 
-    private record FloodPattern(String name, Pattern pattern, int shorted) {}
+//    private record FloodPattern(String name, Pattern pattern, int shorted) {}
+    private record FloodPattern(String name, Pattern pattern, String replacement) {}
 }
