@@ -25,7 +25,7 @@ public class AsyncChatListener implements Listener {
         if (!chatModule.isFormattingEnabled()) return;
         String format = chatModule.getFormattingFormat();
 
-        Component formattedMessage = ChatFormatter.format(format, e.getPlayer(), e.originalMessage());
+        Component formattedMessage = ChatFormatter.format(format, e.getPlayer(), e.message());
         if (formattedMessage == null) {
             e.setCancelled(true);
             return;
