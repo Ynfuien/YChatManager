@@ -24,7 +24,6 @@ import pl.ynfuien.ychatmanager.storage.Storage;
 import pl.ynfuien.ychatmanager.utils.Lang;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Pattern;
