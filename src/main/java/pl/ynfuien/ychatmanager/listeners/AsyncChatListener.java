@@ -1,6 +1,8 @@
 package pl.ynfuien.ychatmanager.listeners;
 
 import io.papermc.paper.event.player.AsyncChatEvent;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -23,11 +25,12 @@ public class AsyncChatListener implements Listener {
         if (!chatModule.isFormattingEnabled()) return;
         String format = chatModule.getFormattingFormat();
 
-        e.renderer((p, displayName, originalMessage, viewer) -> {
-            // If provided message is the same as the message in e.message(), then change e.message() to formatted message.
-            // It's here so ChatFormatter.format() won't be used {online-players-count} times
-            if (originalMessage.equals(e.message())) e.message(ChatFormatter.format(format, p, originalMessage));
-            return e.message();
-        });
+        Component formattedMessage = ChatFormatter.format(format, e.getPlayer(), e.originalMessage());
+        if (formattedMessage == null) {
+            e.setCancelled(true);
+            return;
+        }
+
+        e.renderer((p, displayName, originalMessage, viewer) -> formattedMessage);
     }
 }

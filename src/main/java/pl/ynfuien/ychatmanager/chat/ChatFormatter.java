@@ -99,13 +99,9 @@ public class ChatFormatter {
         // Placeholders to be used in chat template
         HashMap<String, Object> phs = createPlayerPlaceholders(p);
 
-//        // More placeholders if Vault is enabled
-//        if (VaultHook.isEnabled()) {
-//            Chat chat = VaultHook.getChat();
-//            phs.put("prefix", chat.getPlayerPrefix(p));
-//            phs.put("suffix", chat.getPlayerSuffix(p));
-//            phs.put("group", chat.getPrimaryGroup(p));
-//        }
+        // Parses player's message
+        Component formattedMessage = parsePlayerMessage(p, originalMessage);
+        if (PlainTextComponentSerializer.plainText().serialize(formattedMessage).isBlank()) return null;
 
         // Replaces template and PAPI placeholders
         chatTemplate = parseTemplatePlaceholders(chatTemplate, phs);
@@ -115,8 +111,7 @@ public class ChatFormatter {
         // Formats template with MiniMessage
         Component formattedTemplate = SERIALIZER.deserialize(chatTemplate, StandardTags.defaults());
 
-        // Parses player's message and returns template with {message} placeholder replaced
-        Component formattedMessage = parsePlayerMessage(p, originalMessage);
+        // Returns template with {message} placeholder replaced
         return formattedTemplate.replaceText(TextReplacementConfig
                 .builder()
                 .matchLiteral("{message}")
