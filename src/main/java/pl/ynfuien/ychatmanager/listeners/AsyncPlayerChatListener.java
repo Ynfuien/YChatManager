@@ -56,6 +56,11 @@ public class AsyncPlayerChatListener implements Listener {
             return;
         }
 
+        if (message.isBlank()) {
+            e.setCancelled(true);
+            return;
+        }
+
         e.setMessage(message);
     }
 }
