@@ -86,7 +86,6 @@ public class Messenger {
         if (text == null) return null;
         if (placeholders == null) return text;
 
-
         // Loop max 3 times through placeholders,
         // in case there would be placeholders inside placeholders.
         // And in case there would be too many placeholders inside placeholders,
@@ -104,9 +103,5 @@ public class Messenger {
         }
 
         return text;
-    }
-
-    public static MiniMessage getMiniMessage() {
-        return miniMessage;
     }
 }
