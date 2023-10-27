@@ -28,9 +28,6 @@ plugin-is-reloading: '{prefix} <red>Plugin is reloading, wait a second..'
 commands-incorrect: '{prefix} <red>Incorrect command! Use /{command} help, for help.'
 commands-no-permission: '{prefix} <red>You don''t have permission for this command!'
 
-# Main
-#command-main-help: '{prefix} <aqua>Avaiable commands: /{command} <reload | help | version | anti-swear>.'
-
 help-no-commands: '{prefix} <red>You don''t have permission for any command!'
 help-top: '{prefix} <dark_aqua>Available commands:'
 help-command-template: '<click:suggest_command:"/{command}"><hover:show_text:"Click to enter the command"><blue>/{command}</click> <white>- <aqua>{description}'
