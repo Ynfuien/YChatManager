@@ -1,5 +1,5 @@
 # YChatManager
-Plugin to create unlimited number of custom currencies for your server. Made and tested on version **1.19.4**, but should also work on higher versions.
+Plugin for chat management, formatting, anti-spam etc. Made and tested on version **1.19.4**, but should also work on higher versions.
 Plugin requires at least [Paper](https://github.com/PaperMC/Paper), won't work on Spigot or Bukkit.
 
 # Features
