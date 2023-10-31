@@ -181,7 +181,12 @@ public class NickCommand implements CommandExecutor, TabCompleter {
         String arg1 = args[0].toLowerCase();
         if (args.length == 1) {
             if (sender.hasPermission(PERMISSION_NICK_OTHERS)) {
+                Player player = null;
+                if (sender instanceof Player) player = (Player) sender;
+
                 for (Player p : Bukkit.getOnlinePlayers()) {
+                    if (player != null && !player.canSee(p)) continue;
+
                     String name = p.getName();
                     if (name.toLowerCase().startsWith(arg1)) completions.add(name);
                 }
