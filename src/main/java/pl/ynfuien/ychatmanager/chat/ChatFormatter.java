@@ -87,7 +87,7 @@ public class ChatFormatter {
         HashMap<String, ChatColor> legacyFormats = new HashMap<>();
 
         for (ChatColor color : ChatColor.values()) {
-            legacyFormats.put(String.format( "%s.legacy.%s", PERMISSION_BASE, color.name().toLowerCase()), color);
+            legacyFormats.put(String.format("%s.legacy.%s", permissionBase, color.name().toLowerCase()), color);
         }
 
         return legacyFormats;
