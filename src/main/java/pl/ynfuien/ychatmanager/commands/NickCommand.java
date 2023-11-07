@@ -6,7 +6,6 @@ import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import net.kyori.adventure.text.minimessage.tag.standard.StandardTags;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -18,6 +17,7 @@ import org.jetbrains.annotations.Nullable;
 import pl.ynfuien.ychatmanager.YChatManager;
 import pl.ynfuien.ychatmanager.api.events.NicknameChangeEvent;
 import pl.ynfuien.ychatmanager.chat.ChatFormatter;
+import pl.ynfuien.ychatmanager.chat.LegacyPostProcessor;
 import pl.ynfuien.ychatmanager.modules.DisplaynameModule;
 import pl.ynfuien.ychatmanager.storage.Nickname;
 import pl.ynfuien.ychatmanager.storage.Storage;
@@ -34,9 +34,7 @@ public class NickCommand implements CommandExecutor, TabCompleter {
     private static final String PERMISSION_BASE = "ychatmanager.command.nick";
     private static final String PERMISSION_NICK_OTHERS = PERMISSION_BASE + ".others";
     private static final HashMap<String, TagResolver> TAG_RESOLVERS = ChatFormatter.getTagResolvers(PERMISSION_BASE);
-    private static final HashMap<String, ChatColor> LEGACY_FORMATS = ChatFormatter.getLegacyFormats(PERMISSION_BASE);
     private static final Pattern usernamePattern = Pattern.compile("^[a-zA-Z0-9_]+$");
-//    private static final Pattern formatsPattern = Pattern.compile("(&[a-f0-9k-o]|<.+?>)", Pattern.CASE_INSENSITIVE);
 
     public NickCommand(YChatManager instance) {
         this.instance = instance;
@@ -101,12 +99,9 @@ public class NickCommand implements CommandExecutor, TabCompleter {
     }
 
     public Nickname getNickname(CommandSender sender, OfflinePlayer p, String input) {
-        String nick = parseLegacyFormats(sender, input);
-
-        Component formatted = parseMiniMessageFormats(sender, nick);
-        if (nick.contains(ChatFormatter.AMPERSAND_PLACEHOLDER)) formatted = formatted.replaceText(ChatFormatter.AMPERSAND_REPLACEMENT);
-
+        Component formatted = parseFormats(sender, input);
         String plainText = PlainTextComponentSerializer.plainText().serialize(formatted);
+
         HashMap<String, Object> phs = new HashMap<>() {{put("nick", plainText);}};
 
 
@@ -147,30 +142,20 @@ public class NickCommand implements CommandExecutor, TabCompleter {
 
     // Checks player's permissions for colors/styles and parses message using those
     private final static Pattern MM_TAG_PATTERN = Pattern.compile("<.+>");
-    private static Component parseMiniMessageFormats(CommandSender sender, String text) {
-        if (!MM_TAG_PATTERN.matcher(text).find()) return ChatFormatter.SERIALIZER.deserialize(text);
+    private static Component parseFormats(CommandSender sender, String text) {
+        MiniMessage serializer = MiniMessage.builder()
+                .postProcessor(new LegacyPostProcessor(sender, PERMISSION_BASE))
+                .tags(TagResolver.empty())
+                .build();
+
+        if (!MM_TAG_PATTERN.matcher(text).find()) return serializer.deserialize(text);
 
         List<TagResolver> permittedResolvers = new ArrayList<>();
         for (String perm : TAG_RESOLVERS.keySet()) {
             if (sender.hasPermission(perm)) permittedResolvers.add(TAG_RESOLVERS.get(perm));
         }
 
-        return ChatFormatter.SERIALIZER.deserialize(text, TagResolver.resolver(permittedResolvers));
-    }
-
-    // Replaces all & with a placeholder, and then back only these that player has permission for
-    private static String parseLegacyFormats(CommandSender sender, String text) {
-        if (!text.contains("&")) return text;
-        text = text.replace("&", ChatFormatter.AMPERSAND_PLACEHOLDER);
-
-        for (String perm : LEGACY_FORMATS.keySet()) {
-            if (!sender.hasPermission(perm)) continue;
-
-            char colorChar = LEGACY_FORMATS.get(perm).getChar();
-            text = text.replace(ChatFormatter.AMPERSAND_PLACEHOLDER + colorChar, "&" + colorChar);
-        }
-
-        return text;
+        return serializer.deserialize(text, TagResolver.resolver(permittedResolvers));
     }
 
     @Override
