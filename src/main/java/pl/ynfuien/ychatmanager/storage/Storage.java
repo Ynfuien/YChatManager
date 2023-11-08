@@ -20,7 +20,7 @@ public class Storage {
         Storage.database = instance.getDatabase();
     }
 
-    @Nullable
+    @NotNull
     public static Nickname getNick(@NotNull UUID uuid) {
         if (nicknames.containsKey(uuid)) return nicknames.get(uuid);
 
