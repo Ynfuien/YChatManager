@@ -66,10 +66,21 @@ public final class LegacyPostProcessor implements UnaryOperator<Component> {
         }
     }
 
-    private static final Pattern LEGACY_PATTERN = Pattern.compile("&([0-9a-fA-Fk-oK-OrR])");
+    private static final Pattern LEGACY_PATTERN = Pattern.compile("&[0-9a-fA-Fk-oK-OrR]");
+    private static final Pattern LEGACY_HEX_PATTERN = Pattern.compile("&#[0-9a-fA-F]{6}");
     private static final String SECTION_CHAR = "§";
     // Parses & format to §, but only for those colors/formats, that player has permission for
     private static String parseLegacyFormats(Permissible p, String message, String permissionBase) {
+        // Hex colors
+        if (p.hasPermission(permissionBase + ".legacy.hex")) {
+            Matcher matcher = LEGACY_HEX_PATTERN.matcher(message);
+            while (matcher.find()) {
+                String match = matcher.group();
+                message = message.replace(match, SECTION_CHAR + match.substring(1));
+            }
+        }
+
+        // Other colors and formats
         Matcher matcher = LEGACY_PATTERN.matcher(message);
         while (matcher.find()) {
             String match = matcher.group();
