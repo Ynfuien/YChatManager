@@ -11,6 +11,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -116,23 +117,34 @@ public class NickCommand implements CommandExecutor, TabCompleter {
             }
 
             if (!unsafe) {
+                if (plainText.isBlank()) {
+                    Lang.Message.COMMAND_NICK_FAIL_BLANK.send(sender, phs);
+                    return null;
+                }
+
                 if (!plainText.matches(usernamePattern.pattern())) {
                     Lang.Message.COMMAND_NICK_FAIL_UNSAFE.send(sender, phs);
                     return null;
                 }
 
-                if (plainText.length() > 16) {
+                ConfigurationSection config = instance.getConfig().getConfigurationSection("commands.nickname");
+                int maxLength = config.getInt("max-length");
+                phs.put("max-length", maxLength);
+                if (plainText.length() > maxLength) {
                     Lang.Message.COMMAND_NICK_FAIL_TOO_LONG.send(sender, phs);
                     return null;
                 }
 
-                if (plainText.length() < 2) {
+                int minLength = config.getInt("min-length");
+                phs.put("min-length", minLength);
+                if (plainText.length() < minLength) {
                     Lang.Message.COMMAND_NICK_FAIL_TOO_SHORT.send(sender, phs);
                     return null;
                 }
             }
 
-            if (!custom) {Lang.Message.COMMAND_NICK_FAIL_ONLY_FORMATS.send(sender, phs);
+            if (!custom) {
+                Lang.Message.COMMAND_NICK_FAIL_ONLY_FORMATS.send(sender, phs);
                 return null;
             }
         }

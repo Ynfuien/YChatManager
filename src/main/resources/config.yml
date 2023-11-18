@@ -30,6 +30,13 @@ commands:
     # if sender doesn't have 'ychatmanager.command.message.vanished' permission
     check-vanish: false
 
+  nickname:
+    # Min and max length for custom nicknames.
+    # Custom meaning - with permission 'ychatmanager.command.nick.custom'
+    # It won't apply to players with permission for unsafe nicks.
+    min-length: 2
+    max-length: 16
+
   # Cooldowns in ticks betweeen executing commands.
   #  - 20 ticks = 1 second
   #  - Set any cooldown to 0 to disable it.
