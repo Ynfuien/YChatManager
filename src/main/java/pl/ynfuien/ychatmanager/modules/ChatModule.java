@@ -16,6 +16,7 @@ public class ChatModule {
 
     private boolean formattingEnabled;
     private String formattingFormat;
+    private boolean playerFormats;
     private Pattern allowedPattern;
     private int messageCooldown;
 
@@ -31,6 +32,7 @@ public class ChatModule {
     public boolean load(ConfigurationSection config) {
         formattingEnabled = config.getBoolean("formatting.enabled");
         formattingFormat = config.getString("formatting.format");
+        playerFormats = config.getBoolean("formatting.player-formats");
 
         String pattern = config.getString("allowed-pattern");
         allowedPattern = pattern.length() > 0 ? Pattern.compile(pattern) : null;
@@ -106,6 +108,9 @@ public class ChatModule {
 
     public String getFormattingFormat() {
         return formattingFormat;
+    }
+    public boolean isPlayerFormats() {
+        return playerFormats;
     }
 
     public Pattern getAllowedPattern() {

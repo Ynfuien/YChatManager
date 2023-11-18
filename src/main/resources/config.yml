@@ -61,7 +61,7 @@ private-messages:
     volume: 0.8
     pitch: 1
 
-# Displayname formatting
+# Players displayname formatting
 displayname:
   enabled: true
   # Available placeholders:
@@ -101,6 +101,10 @@ chat:
     # {prefix}, {suffix}, {group}
     # You can also use PAPI placeholders, and MiniMessage formatting.
     format: '<hover:show_text:"<#9df037>Player: <#f2f244>{username}<reset><br><#9df037>Level: <#f2f244>%player_level%<br><#9df037>Rank: <#f2f244>{group}">{displayname}</hover><reset> <dark_gray>>> <hover:show_text:"<#9df037>Send time: <#f2f244>%server_time_HH:mm:ss%"><gray>{message}</hover>'
+    # Whether to allow players, to format their messages with custom formats.
+    # Plugin will check for permission for each format.
+    # Disable this, if you don't want ANY player, to be able to color/format their message.
+    player-formats: true
 
   # RegEx pattern that a message has to match, to be allowed to be sent.
   # Set empty ('') to disable.

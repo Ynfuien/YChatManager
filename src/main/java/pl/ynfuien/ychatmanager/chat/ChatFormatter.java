@@ -70,13 +70,16 @@ public class ChatFormatter {
 
 
     // Formats provided chat message sent by provided player using provided chat template
-    public static Component format(String chatTemplate, Player p, Component originalMessage) {
+    public static Component format(String chatTemplate, Player p, Component originalMessage, boolean playerFormats) {
         // Placeholders to be used in chat template
         HashMap<String, Object> phs = createPlayerPlaceholders(p);
 
+        Component formattedMessage = originalMessage;
         // Parses player's message
-        Component formattedMessage = parsePlayerMessage(p, originalMessage);
-        if (PlainTextComponentSerializer.plainText().serialize(formattedMessage).isBlank()) return null;
+        if (playerFormats) {
+            formattedMessage = parsePlayerMessage(p, originalMessage);
+            if (PlainTextComponentSerializer.plainText().serialize(formattedMessage).isBlank()) return null;
+        }
 
         // Replaces template and PAPI placeholders
         chatTemplate = parseTemplatePlaceholders(chatTemplate, phs);
