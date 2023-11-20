@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import pl.ynfuien.ychatmanager.YChatManager;
-import pl.ynfuien.ychatmanager.api.events.PrivateMessageSendEvent;
+import pl.ynfuien.ychatmanager.api.event.PrivateMessageSendEvent;
 import pl.ynfuien.ychatmanager.modules.DisplaynameModule;
 import pl.ynfuien.ychatmanager.modules.Modules;
 import pl.ynfuien.ychatmanager.modules.PrivateMessagesModule;

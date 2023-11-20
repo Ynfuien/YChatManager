@@ -16,7 +16,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import pl.ynfuien.ychatmanager.YChatManager;
-import pl.ynfuien.ychatmanager.api.events.NicknameChangeEvent;
+import pl.ynfuien.ychatmanager.api.event.NicknameChangeEvent;
 import pl.ynfuien.ychatmanager.chat.ChatFormatter;
 import pl.ynfuien.ychatmanager.chat.LegacyPostProcessor;
 import pl.ynfuien.ychatmanager.modules.DisplaynameModule;

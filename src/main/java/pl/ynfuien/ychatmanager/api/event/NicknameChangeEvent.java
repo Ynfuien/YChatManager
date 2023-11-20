@@ -1,4 +1,4 @@
-package pl.ynfuien.ychatmanager.api.events;
+package pl.ynfuien.ychatmanager.api.event;
 
 import com.google.common.base.Preconditions;
 import org.bukkit.OfflinePlayer;
