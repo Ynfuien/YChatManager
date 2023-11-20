@@ -65,6 +65,11 @@ public class NickCommand implements CommandExecutor, TabCompleter {
             Nickname nick = getNickname(p, p, inputNick);
             if (nick == null) return true;
 
+            NicknameChangeEvent event = new NicknameChangeEvent(sender, p, nick);
+            Bukkit.getPluginManager().callEvent(event);
+            if (event.isCancelled()) return true;
+            nick = event.getNickname();
+
             Storage.setNick(p.getUniqueId(), nick);
             displaynameModule.updateDisplayname(p);
 
@@ -85,7 +90,7 @@ public class NickCommand implements CommandExecutor, TabCompleter {
         Nickname nick = getNickname(sender, p, inputNick);
         if (nick == null) return true;
 
-        NicknameChangeEvent event = new NicknameChangeEvent(p, nick);
+        NicknameChangeEvent event = new NicknameChangeEvent(sender, p, nick);
         Bukkit.getPluginManager().callEvent(event);
         if (event.isCancelled()) return true;
         nick = event.getNickname();
