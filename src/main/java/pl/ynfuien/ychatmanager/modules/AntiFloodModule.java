@@ -96,6 +96,7 @@ public class AntiFloodModule {
 
             while (matcher.find()) {
                 String match = matcher.group();
+                if (match.equalsIgnoreCase(ChatModule.PLAYER_PLACEHOLDER)) continue;
                 if (consoleLog && !logMatches.containsKey(pattern)) logMatches.put(pattern, new ArrayList<>());
 
                 String replacement = match.replaceFirst(regex.pattern(), pattern.replacement);

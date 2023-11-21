@@ -13,6 +13,8 @@ import java.util.regex.Pattern;
 
 public class ChatModule {
     private final YChatManager instance;
+    public final static String PLAYER_PLACEHOLDER = String.format("<p-%s>", UUID.randomUUID());
+
 
     private boolean formattingEnabled;
     private String formattingFormat;
@@ -50,20 +52,20 @@ public class ChatModule {
      */
     public static String checkUsernames(String message, Function<String, String> formatFunction) {
         List<String> usedUsernames = new ArrayList<>();
-        String placeholder = String.format("<p-%s>", UUID.randomUUID());
 
         for (Player p : Bukkit.getOnlinePlayers()) {
             String username = p.getName();
             if (!message.contains(username)) continue;
+            if (!Pattern.compile(String.format("\\b%s\\b", username)).matcher(message).find()) continue;
 
             usedUsernames.add(username);
-            message = message.replaceFirst(username, placeholder);
+            message = message.replaceFirst(username, PLAYER_PLACEHOLDER);
         }
 
         message = formatFunction.apply(message);
 
         for (String username : usedUsernames) {
-            message = message.replaceFirst(placeholder, username);
+            message = message.replaceFirst(PLAYER_PLACEHOLDER, username);
         }
 
         return message;
