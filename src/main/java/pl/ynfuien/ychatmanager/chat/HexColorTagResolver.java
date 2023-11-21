@@ -14,6 +14,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Set;
 
+// Parses hex colors.
+// Strong inspiration from https://github.com/EternalCodeTeam/ChatFormatter
 public class HexColorTagResolver implements TagResolver, SerializableResolver.Single {
     private static final char HEX = '#';
     private static final String TAG_NAME = "color";

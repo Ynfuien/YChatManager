@@ -17,6 +17,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+// Parses single color tags.
+// Strong inspiration from https://github.com/EternalCodeTeam/ChatFormatter
 public class SingleColorTagResolver implements TagResolver, SerializableResolver.Single {
     private static final String TAG_NAME = "color";
     private static final Set<String> ALIASES = Set.of("colour", "c");

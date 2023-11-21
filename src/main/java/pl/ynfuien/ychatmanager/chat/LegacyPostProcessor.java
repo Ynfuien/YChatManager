@@ -16,7 +16,8 @@ import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-// Parses legacy formats to correct component colors/styles, according to player's permissions
+// Parses legacy formats to correct component colors/styles, according to player's permissions.
+// Strong inspiration from https://github.com/EternalCodeTeam/ChatFormatter
 public final class LegacyPostProcessor implements UnaryOperator<Component> {
     private Permissible player = null;
     private String permissionBase = null;

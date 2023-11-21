@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+// Inspiration from https://github.com/EternalCodeTeam/ChatFormatter
 public class ChatFormatter {
     public static final MiniMessage SERIALIZER = MiniMessage.builder()
             .postProcessor(new LegacyPostProcessor())
