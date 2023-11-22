@@ -10,8 +10,6 @@ import org.bukkit.plugin.ServicesManager;
 import java.util.Objects;
 
 public class VaultHook {
-    private static boolean enabled;
-
     private static Economy economy = null;
     private static Chat chat = null;
     private static Permission permission = null;
@@ -28,23 +26,26 @@ public class VaultHook {
 
         RegisteredServiceProvider<Permission> permissionRsp = manager.getRegistration(Permission.class);
         if (permissionRsp != null) permission = permissionRsp.getProvider();
-
-        enabled = true;
     }
 
 
-    public static boolean isEnabled() {
-        return enabled;
+    public static boolean isEconomy() {
+        return economy != null;
     }
-
     public static Economy getEconomy() {
         return economy;
     }
 
+    public static boolean isChat() {
+        return chat != null;
+    }
     public static Chat getChat() {
         return chat;
     }
 
+    public static boolean isPermission() {
+        return permission != null;
+    }
     public static Permission getPermission() {
         return permission;
     }

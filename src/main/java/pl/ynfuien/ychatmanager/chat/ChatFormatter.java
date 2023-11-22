@@ -184,7 +184,10 @@ public class ChatFormatter {
             put(pp+"username", name);
             put(pp+"displayname", p != null ? MiniMessage.miniMessage().serialize(p.displayName()) : name);
 
-            if (p != null && VaultHook.isEnabled()) {
+            put("prefix", "");
+            put("suffix", "");
+            put("group", "");
+            if (p != null && VaultHook.isChat()) {
                 Chat chat = VaultHook.getChat();
                 put(pp+"prefix", chat.getPlayerPrefix(p));
                 put(pp+"suffix", chat.getPlayerSuffix(p));

@@ -38,7 +38,10 @@ public class DisplaynameModule {
             put("uuid", p.getUniqueId());
         }};
 
-        if (VaultHook.isEnabled()) {
+        phs.put("prefix", "");
+        phs.put("suffix", "");
+        phs.put("group", "");
+        if (VaultHook.isChat()) {
             Chat chat = VaultHook.getChat();
             phs.put("prefix", chat.getPlayerPrefix(p));
             phs.put("suffix", chat.getPlayerSuffix(p));

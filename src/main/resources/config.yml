@@ -75,6 +75,7 @@ displayname:
   # {nick}, {uuid}, {username}
   # And if Vault is present:
   # {prefix}, {suffix}, {group},
+  # Vault placeholders will be blank, if Vault won't be found
   # (nick can be changed with a command; username will always be an original unformatted name)
   # You can also use PAPI placeholders, and MiniMessage formatting.
   format: "{prefix}{nick}{suffix}"
