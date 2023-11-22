@@ -61,7 +61,7 @@ public final class YChatManager extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        database.close();
+        if (database != null) database.close();
 
         Logger.log("Plugin successfully <red>disabled<white>!");
     }
