@@ -33,28 +33,9 @@ commands:
     permission: ychatmanager.command.nick
 
 permissions:
-  ychatmanager.command.main:
-    default: op
-    children:
-      reload: true
-      help: true
-      version: true
-      anti-swear: true
-      anti-swear.words: true
-      anti-swear.exceptions: true
-  ychatmanager.command.clearchat:
-    default: op
   ychatmanager.command.message:
     default: true
     children:
       vanished: false
   ychatmanager.command.reply:
     default: true
-  ychatmanager.socialspy:
-    default: op
-  ychatmanager.command.nick:
-    default: op
-    children:
-      others: true
-      unsafe: true
-      custom: true
