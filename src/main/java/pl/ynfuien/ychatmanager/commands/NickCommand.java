@@ -19,7 +19,7 @@ import pl.ynfuien.ychatmanager.YChatManager;
 import pl.ynfuien.ychatmanager.api.event.NicknameChangeEvent;
 import pl.ynfuien.ychatmanager.chat.ChatFormatter;
 import pl.ynfuien.ychatmanager.chat.LegacyPostProcessor;
-import pl.ynfuien.ychatmanager.modules.DisplaynameModule;
+import pl.ynfuien.ychatmanager.modules.DisplayNameModule;
 import pl.ynfuien.ychatmanager.storage.Nickname;
 import pl.ynfuien.ychatmanager.storage.Storage;
 import pl.ynfuien.ychatmanager.utils.Lang;
@@ -31,7 +31,7 @@ import java.util.regex.Pattern;
 
 public class NickCommand implements CommandExecutor, TabCompleter {
     private final YChatManager instance;
-    private final DisplaynameModule displaynameModule;
+    private final DisplayNameModule displayNameModule;
     private static final String PERMISSION_BASE = "ychatmanager.command.nick";
     private static final String PERMISSION_NICK_OTHERS = PERMISSION_BASE + ".others";
     private static final HashMap<String, TagResolver> TAG_RESOLVERS = ChatFormatter.getTagResolvers(PERMISSION_BASE);
@@ -39,7 +39,7 @@ public class NickCommand implements CommandExecutor, TabCompleter {
 
     public NickCommand(YChatManager instance) {
         this.instance = instance;
-        this.displaynameModule = instance.getModules().getDisplaynameModule();
+        this.displayNameModule = instance.getModules().getDisplaynameModule();
     }
 
     @Override
@@ -71,7 +71,7 @@ public class NickCommand implements CommandExecutor, TabCompleter {
             nick = event.getNickname();
 
             Storage.setNick(p.getUniqueId(), nick);
-            displaynameModule.updateDisplayname(p);
+            displayNameModule.updateDisplayname(p);
 
             placeholders.put("nick", nick.serialized());
             Lang.Message.COMMAND_NICK_SUCCESS.send(sender, placeholders);
@@ -96,7 +96,7 @@ public class NickCommand implements CommandExecutor, TabCompleter {
         nick = event.getNickname();
 
         Storage.setNick(p.getUniqueId(), nick);
-        if (p.isOnline()) displaynameModule.updateDisplayname((Player) p);
+        if (p.isOnline()) displayNameModule.updateDisplayname((Player) p);
 
         placeholders.put("player", p.getName());
         placeholders.put("nick", nick.serialized());

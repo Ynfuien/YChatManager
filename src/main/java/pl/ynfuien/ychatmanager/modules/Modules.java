@@ -8,7 +8,7 @@ public class Modules {
     private final YChatManager instance;
 
     private final CommandCooldownsModule commandCooldownsModule;
-    private final DisplaynameModule displaynameModule = new DisplaynameModule();
+    private final DisplayNameModule displayNameModule = new DisplayNameModule();
     private final PrivateMessagesModule privateMessagesModule = new PrivateMessagesModule();
     private final ChatModule chatModule;
     private final AntiFloodModule antiFloodModule = new AntiFloodModule();
@@ -31,7 +31,7 @@ public class Modules {
      */
     public boolean load(FileConfiguration config) {
         commandCooldownsModule.load(config.getConfigurationSection("commands.cooldowns"));
-        displaynameModule.load(config.getConfigurationSection("displayname"));
+        displayNameModule.load(config.getConfigurationSection("displayname"));
         privateMessagesModule.load(config.getConfigurationSection("private-messages"));
         chatModule.load(config.getConfigurationSection("chat"));
         if (!antiFloodModule.load(config.getConfigurationSection("chat.anti-flood"))) {
@@ -48,8 +48,8 @@ public class Modules {
     public CommandCooldownsModule getCommandCooldownsModule() {
         return commandCooldownsModule;
     }
-    public DisplaynameModule getDisplaynameModule() {
-        return displaynameModule;
+    public DisplayNameModule getDisplaynameModule() {
+        return displayNameModule;
     }
     public PrivateMessagesModule getPrivateMessagesModule() {
         return privateMessagesModule;

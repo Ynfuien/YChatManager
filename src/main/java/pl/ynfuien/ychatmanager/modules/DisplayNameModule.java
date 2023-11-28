@@ -10,7 +10,7 @@ import pl.ynfuien.ychatmanager.storage.Storage;
 
 import java.util.HashMap;
 
-public class DisplaynameModule {
+public class DisplayNameModule {
     private boolean enabled;
     private String format;
 

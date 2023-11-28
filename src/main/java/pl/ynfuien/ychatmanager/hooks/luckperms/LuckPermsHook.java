@@ -11,7 +11,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitTask;
 import pl.ynfuien.ychatmanager.YChatManager;
-import pl.ynfuien.ychatmanager.modules.DisplaynameModule;
+import pl.ynfuien.ychatmanager.modules.DisplayNameModule;
 import pl.ynfuien.ychatmanager.utils.Logger;
 
 import java.util.Collection;
@@ -20,7 +20,7 @@ import java.util.Collection;
 // to keep prefixes and suffixed up to date.
 public class LuckPermsHook {
     private final YChatManager instance;
-    private final DisplaynameModule displayNameModule;
+    private final DisplayNameModule displayNameModule;
     private BukkitTask userTask = null;
     private BukkitTask groupTask = null;
 

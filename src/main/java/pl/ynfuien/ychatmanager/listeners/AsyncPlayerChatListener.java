@@ -7,21 +7,21 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import pl.ynfuien.ychatmanager.YChatManager;
 import pl.ynfuien.ychatmanager.modules.ChatModule;
-import pl.ynfuien.ychatmanager.modules.DisplaynameModule;
+import pl.ynfuien.ychatmanager.modules.DisplayNameModule;
 import pl.ynfuien.ychatmanager.modules.Modules;
 import pl.ynfuien.ychatmanager.utils.Lang;
 
 public class AsyncPlayerChatListener implements Listener {
     private final YChatManager instance;
     private final Modules modules;
-    private final DisplaynameModule displaynameModule;
+    private final DisplayNameModule displayNameModule;
     private final ChatModule chatModule;
 
 
     public AsyncPlayerChatListener(YChatManager instance) {
         this.instance = instance;
         this.modules = instance.getModules();
-        this.displaynameModule = modules.getDisplaynameModule();
+        this.displayNameModule = modules.getDisplaynameModule();
         this.chatModule = modules.getChatModule();
     }
 
@@ -29,7 +29,7 @@ public class AsyncPlayerChatListener implements Listener {
     @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
     public void onAsyncPlayerChat(AsyncPlayerChatEvent e) {
         Player p = e.getPlayer();
-        displaynameModule.updateDisplayname(p);
+        displayNameModule.updateDisplayname(p);
 
         // Check cooldown
         if (!chatModule.checkCooldown(p)) {

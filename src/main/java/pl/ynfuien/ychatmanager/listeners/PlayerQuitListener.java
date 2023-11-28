@@ -11,19 +11,19 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import pl.ynfuien.ychatmanager.YChatManager;
 import pl.ynfuien.ychatmanager.chat.ChatFormatter;
 import pl.ynfuien.ychatmanager.modules.CommandCooldownsModule;
-import pl.ynfuien.ychatmanager.modules.DisplaynameModule;
+import pl.ynfuien.ychatmanager.modules.DisplayNameModule;
 import pl.ynfuien.ychatmanager.modules.Modules;
 import pl.ynfuien.ychatmanager.storage.Storage;
 
 public class PlayerQuitListener implements Listener {
     private final YChatManager instance;
-    private final DisplaynameModule displaynameModule;
+    private final DisplayNameModule displayNameModule;
     private final CommandCooldownsModule commandCooldownsModule;
 
     public PlayerQuitListener(YChatManager instance) {
         this.instance = instance;
         Modules modules = instance.getModules();
-        this.displaynameModule = modules.getDisplaynameModule();
+        this.displayNameModule = modules.getDisplaynameModule();
         this.commandCooldownsModule = modules.getCommandCooldownsModule();
     }
 
@@ -52,7 +52,7 @@ public class PlayerQuitListener implements Listener {
             return;
         }
 
-        displaynameModule.updateDisplayname(p);
+        displayNameModule.updateDisplayname(p);
         format = ChatFormatter.parseTemplatePlaceholders(format, ChatFormatter.createPlayerPlaceholders(p));
         format = ChatFormatter.parsePAPI(p, format);
         format = format.replace('§', '&');

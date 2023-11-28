@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import pl.ynfuien.ychatmanager.YChatManager;
 import pl.ynfuien.ychatmanager.api.event.PrivateMessageSendEvent;
-import pl.ynfuien.ychatmanager.modules.DisplaynameModule;
+import pl.ynfuien.ychatmanager.modules.DisplayNameModule;
 import pl.ynfuien.ychatmanager.modules.Modules;
 import pl.ynfuien.ychatmanager.modules.PrivateMessagesModule;
 import pl.ynfuien.ychatmanager.utils.Lang;
@@ -22,14 +22,14 @@ import java.util.List;
 
 public class MessageCommand implements CommandExecutor, TabCompleter {
     private static YChatManager instance = null;
-    private final DisplaynameModule displaynameModule;
+    private final DisplayNameModule displayNameModule;
     private final PrivateMessagesModule privateMessagesModule;
     public static final HashMap<CommandSender, CommandSender> lastParticipants = new HashMap<>();
 
     public MessageCommand(YChatManager instance) {
         MessageCommand.instance = instance;
         Modules modules = instance.getModules();
-        this.displaynameModule = modules.getDisplaynameModule();
+        this.displayNameModule = modules.getDisplaynameModule();
         this.privateMessagesModule = modules.getPrivateMessagesModule();
     }
 
@@ -60,8 +60,8 @@ public class MessageCommand implements CommandExecutor, TabCompleter {
             }
         }
 
-        if (sender instanceof Player) displaynameModule.updateDisplayname((Player) sender);
-        if (receiver instanceof Player) displaynameModule.updateDisplayname((Player) receiver);
+        if (sender instanceof Player) displayNameModule.updateDisplayname((Player) sender);
+        if (receiver instanceof Player) displayNameModule.updateDisplayname((Player) receiver);
 
         lastParticipants.put(sender, receiver);
         // Setting player that sent message, as a last participant, after 15 ticks.

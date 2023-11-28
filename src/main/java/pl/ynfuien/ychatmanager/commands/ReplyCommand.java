@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import pl.ynfuien.ychatmanager.YChatManager;
 import pl.ynfuien.ychatmanager.api.event.PrivateMessageSendEvent;
-import pl.ynfuien.ychatmanager.modules.DisplaynameModule;
+import pl.ynfuien.ychatmanager.modules.DisplayNameModule;
 import pl.ynfuien.ychatmanager.modules.Modules;
 import pl.ynfuien.ychatmanager.modules.PrivateMessagesModule;
 import pl.ynfuien.ychatmanager.utils.Lang;
@@ -22,13 +22,13 @@ import static pl.ynfuien.ychatmanager.commands.MessageCommand.lastParticipants;
 
 public class ReplyCommand implements CommandExecutor, TabCompleter {
     private final YChatManager instance;
-    private final DisplaynameModule displaynameModule;
+    private final DisplayNameModule displayNameModule;
     private final PrivateMessagesModule privateMessagesModule;
 
     public ReplyCommand(YChatManager instance) {
         this.instance = instance;
         Modules modules = instance.getModules();
-        this.displaynameModule = modules.getDisplaynameModule();
+        this.displayNameModule = modules.getDisplaynameModule();
         this.privateMessagesModule = modules.getPrivateMessagesModule();
     }
 
@@ -64,8 +64,8 @@ public class ReplyCommand implements CommandExecutor, TabCompleter {
         }
 
 
-        if (sender instanceof Player) displaynameModule.updateDisplayname((Player) sender);
-        if (receiver instanceof Player) displaynameModule.updateDisplayname((Player) receiver);
+        if (sender instanceof Player) displayNameModule.updateDisplayname((Player) sender);
+        if (receiver instanceof Player) displayNameModule.updateDisplayname((Player) receiver);
 
         lastParticipants.put(receiver, sender);
 
