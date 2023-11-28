@@ -1,6 +1,7 @@
 # User-specific stuff
 .idea/
 Javadocs/
+/src/main/resources/swear-words_pl.yml
 
 *.iml
 *.ipr
