@@ -5,6 +5,7 @@ import net.milkbowl.vault.chat.Chat;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import pl.ynfuien.ychatmanager.chat.ChatFormatter;
+import pl.ynfuien.ychatmanager.chat.ColorFormatter;
 import pl.ynfuien.ychatmanager.hooks.vault.VaultHook;
 import pl.ynfuien.ychatmanager.storage.Storage;
 
@@ -32,27 +33,12 @@ public class DisplayNameModule {
     public void updateDisplayname(Player p) {
         if (!enabled) return;
 
-        HashMap<String, Object> phs = new HashMap<>() {{
-            put("username", p.getName());
-            put("nick", Storage.getNick(p.getUniqueId()).serialized());
-            put("uuid", p.getUniqueId());
-        }};
-
-        phs.put("prefix", "");
-        phs.put("suffix", "");
-        phs.put("group", "");
-        if (VaultHook.isChat()) {
-            Chat chat = VaultHook.getChat();
-            phs.put("prefix", chat.getPlayerPrefix(p));
-            phs.put("suffix", chat.getPlayerSuffix(p));
-            phs.put("group", chat.getPrimaryGroup(p));
-        }
+        HashMap<String, Object> phs = ChatFormatter.createPlayerPlaceholders(p, null, false);
 
         String format = ChatFormatter.parseTemplatePlaceholders(this.format, phs);
-        format = ChatFormatter.parsePAPI(p, format);
-        format = format.replace('§', '&');
+        format = ColorFormatter.parsePAPI(p, format);
 
-        p.displayName(ChatFormatter.SERIALIZER.deserialize(format, StandardTags.defaults()));
+        p.displayName(ColorFormatter.SERIALIZER.deserialize(format));
     }
 
     // Getters

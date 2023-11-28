@@ -10,6 +10,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 import pl.ynfuien.ychatmanager.YChatManager;
 import pl.ynfuien.ychatmanager.chat.ChatFormatter;
+import pl.ynfuien.ychatmanager.chat.ColorFormatter;
 import pl.ynfuien.ychatmanager.modules.CommandCooldownsModule;
 import pl.ynfuien.ychatmanager.modules.DisplayNameModule;
 import pl.ynfuien.ychatmanager.modules.Modules;
@@ -55,9 +56,8 @@ public class PlayerQuitListener implements Listener {
 
         displayNameModule.updateDisplayname(p);
         format = ChatFormatter.parseTemplatePlaceholders(format, ChatFormatter.createPlayerPlaceholders(p));
-        format = ChatFormatter.parsePAPI(p, format);
-        format = format.replace('§', '&');
+        format = ColorFormatter.parsePAPI(p, format);
 
-        event.quitMessage(ChatFormatter.SERIALIZER.deserialize(format, StandardTags.defaults()));
+        event.quitMessage(ColorFormatter.SERIALIZER.deserialize(format));
     }
 }

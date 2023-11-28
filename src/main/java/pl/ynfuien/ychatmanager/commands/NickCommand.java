@@ -6,6 +6,7 @@ import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
 import net.kyori.adventure.text.minimessage.tag.standard.StandardTags;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.bukkit.Bukkit;
+import org.bukkit.Color;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -18,6 +19,7 @@ import org.jetbrains.annotations.Nullable;
 import pl.ynfuien.ychatmanager.YChatManager;
 import pl.ynfuien.ychatmanager.api.event.NicknameChangeEvent;
 import pl.ynfuien.ychatmanager.chat.ChatFormatter;
+import pl.ynfuien.ychatmanager.chat.ColorFormatter;
 import pl.ynfuien.ychatmanager.chat.LegacyPostProcessor;
 import pl.ynfuien.ychatmanager.modules.DisplayNameModule;
 import pl.ynfuien.ychatmanager.storage.Nickname;
@@ -34,7 +36,7 @@ public class NickCommand implements CommandExecutor, TabCompleter {
     private final DisplayNameModule displayNameModule;
     private static final String PERMISSION_BASE = "ychatmanager.command.nick";
     private static final String PERMISSION_NICK_OTHERS = PERMISSION_BASE + ".others";
-    private static final HashMap<String, TagResolver> TAG_RESOLVERS = ChatFormatter.getTagResolvers(PERMISSION_BASE);
+    private static final ColorFormatter colorFormatter = new ColorFormatter(PERMISSION_BASE + ".formats");
     private static final Pattern usernamePattern = Pattern.compile("^[a-zA-Z0-9_]+$");
 
     public NickCommand(YChatManager instance) {
@@ -105,7 +107,7 @@ public class NickCommand implements CommandExecutor, TabCompleter {
     }
 
     public Nickname getNickname(CommandSender sender, OfflinePlayer p, String input) {
-        Component formatted = parseFormats(sender, input);
+        Component formatted = colorFormatter.format(sender, input);
         String plainText = PlainTextComponentSerializer.plainText().serialize(formatted);
 
         HashMap<String, Object> phs = new HashMap<>() {{put("nick", plainText);}};
@@ -116,7 +118,7 @@ public class NickCommand implements CommandExecutor, TabCompleter {
             boolean unsafe = sender.hasPermission(PERMISSION_BASE + ".unsafe");
 
             // If player used formats that he don't have access to
-            if ((!unsafe || !custom) && !plainText.equals(PlainTextComponentSerializer.plainText().serialize(ChatFormatter.SERIALIZER.deserialize(plainText, StandardTags.defaults())))) {
+            if ((!unsafe || !custom) && !plainText.equals(PlainTextComponentSerializer.plainText().serialize(ColorFormatter.SERIALIZER.deserialize(plainText)))) {
                 Lang.Message.COMMAND_NICK_FAIL_NOT_PERMITTED.send(sender, phs);
                 return null;
             }
@@ -155,24 +157,6 @@ public class NickCommand implements CommandExecutor, TabCompleter {
         }
 
         return new Nickname(MiniMessage.miniMessage().serialize(formatted), input);
-    }
-
-    // Checks player's permissions for colors/styles and parses message using those
-    private final static Pattern MM_TAG_PATTERN = Pattern.compile("<.+>");
-    private static Component parseFormats(CommandSender sender, String text) {
-        MiniMessage serializer = MiniMessage.builder()
-                .postProcessor(new LegacyPostProcessor(sender, PERMISSION_BASE))
-                .tags(TagResolver.empty())
-                .build();
-
-        if (!MM_TAG_PATTERN.matcher(text).find()) return serializer.deserialize(text);
-
-        List<TagResolver> permittedResolvers = new ArrayList<>();
-        for (String perm : TAG_RESOLVERS.keySet()) {
-            if (sender.hasPermission(perm)) permittedResolvers.add(TAG_RESOLVERS.get(perm));
-        }
-
-        return serializer.deserialize(text, TagResolver.resolver(permittedResolvers));
     }
 
     @Override

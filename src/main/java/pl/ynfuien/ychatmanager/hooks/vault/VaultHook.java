@@ -7,8 +7,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.ServicesManager;
 
-import java.util.Objects;
-
 public class VaultHook {
     private static Economy economy = null;
     private static Chat chat = null;

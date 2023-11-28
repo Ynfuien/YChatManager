@@ -6,7 +6,7 @@ import net.kyori.adventure.text.TextReplacementConfig;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import pl.ynfuien.ychatmanager.chat.ChatFormatter;
+import pl.ynfuien.ychatmanager.chat.ColorFormatter;
 import pl.ynfuien.ychatmanager.hooks.Hooks;
 
 import java.util.HashMap;
@@ -26,7 +26,7 @@ public class Messenger {
         message = message.replace('§', '&');
         message = parsePAPI(receiver, message);
 
-        Component formatted = ChatFormatter.SERIALIZER.deserialize(message);
+        Component formatted = ColorFormatter.SERIALIZER.deserialize(message);
         if (formatted.equals(Component.empty())) return;
 
         receiver.sendMessage(formatted);
@@ -105,7 +105,7 @@ public class Messenger {
             if (match.equals(parsed)) continue;
 
             parsed = parsed.replace('§', '&');
-            String formatted = MiniMessage.miniMessage().serialize(ChatFormatter.SERIALIZER.deserialize(parsed));
+            String formatted = MiniMessage.miniMessage().serialize(ColorFormatter.SERIALIZER.deserialize(parsed));
             message = message.replace(match, formatted);
         }
 

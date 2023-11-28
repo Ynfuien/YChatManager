@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import pl.ynfuien.ychatmanager.YChatManager;
-import pl.ynfuien.ychatmanager.chat.ChatFormatter;
+import pl.ynfuien.ychatmanager.chat.ColorFormatter;
 import pl.ynfuien.ychatmanager.utils.Lang;
 
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ public class ClearChatCommand implements CommandExecutor, TabCompleter {
         placeholders.put("clearchat-prefix", Lang.Message.COMMAND_CLEARCHAT_PREFIX.get());
         placeholders.put("message", Lang.Message.COMMAND_CLEARCHAT_INFO_ADMINS_OTHER_ADMIN.get());
         placeholders.put("player", sender.getName());
-        placeholders.put("displayname", sender instanceof Player ? ChatFormatter.SERIALIZER.serialize(((Player) sender).displayName()) : sender.getName());
+        placeholders.put("displayname", sender instanceof Player ? ColorFormatter.SERIALIZER.serialize(((Player) sender).displayName()) : sender.getName());
 
         for (Player p : Bukkit.getOnlinePlayers()) {
             // To players

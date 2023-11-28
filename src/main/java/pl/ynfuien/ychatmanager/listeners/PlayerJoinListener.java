@@ -9,6 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import pl.ynfuien.ychatmanager.YChatManager;
 import pl.ynfuien.ychatmanager.chat.ChatFormatter;
+import pl.ynfuien.ychatmanager.chat.ColorFormatter;
 import pl.ynfuien.ychatmanager.modules.DisplayNameModule;
 
 public class PlayerJoinListener implements Listener {
@@ -22,6 +23,9 @@ public class PlayerJoinListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
     public void onPlayerJoin(PlayerJoinEvent event) {
+        Player p = event.getPlayer();
+        displayNameModule.updateDisplayname(p);
+
         // Format join message
         ConfigurationSection config = instance.getConfig().getConfigurationSection("join-message");
         if (!config.getBoolean("change")) return;
@@ -32,12 +36,9 @@ public class PlayerJoinListener implements Listener {
             return;
         }
 
-        Player p = event.getPlayer();
-        displayNameModule.updateDisplayname(p);
         format = ChatFormatter.parseTemplatePlaceholders(format, ChatFormatter.createPlayerPlaceholders(p));
-        format = ChatFormatter.parsePAPI(p, format);
-        format = format.replace('§', '&');
+        format = ColorFormatter.parsePAPI(p, format);
 
-        event.joinMessage(ChatFormatter.SERIALIZER.deserialize(format, StandardTags.defaults()));
+        event.joinMessage(ColorFormatter.SERIALIZER.deserialize(format));
     }
 }

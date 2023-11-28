@@ -13,10 +13,12 @@ import pl.ynfuien.ychatmanager.modules.ChatModule;
 public class AsyncChatListener implements Listener {
     private final YChatManager instance;
     private final ChatModule chatModule;
+    private final ChatFormatter chatFormatter;
 
     public AsyncChatListener(YChatManager instance) {
         this.instance = instance;
         this.chatModule = instance.getModules().getChatModule();
+        this.chatFormatter = new ChatFormatter(chatModule);
     }
 
     // Chat formatting
@@ -25,8 +27,7 @@ public class AsyncChatListener implements Listener {
         if (!chatModule.isFormattingEnabled()) return;
 
         // Parse the message
-        String format = chatModule.getFormattingFormat();
-        Component formattedMessage = ChatFormatter.format(format, e.getPlayer(), e.message(), chatModule.isPlayerFormats());
+        Component formattedMessage = chatFormatter.format( e.getPlayer(), e.message());
         // Cancel if it's null. Probably player sent just a color format, without any actual message
         if (formattedMessage == null) {
             e.setCancelled(true);
