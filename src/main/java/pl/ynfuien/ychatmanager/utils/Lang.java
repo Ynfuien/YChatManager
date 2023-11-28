@@ -31,7 +31,7 @@ public class Lang {
     public static String get(String path, HashMap<String, Object> placeholders) {
         placeholders.put("prefix", prefix);
         // Return message with used placeholders
-        return Messenger.replacePlaceholders(langConfig.getString(path), placeholders);
+        return Messenger.parsePluginPlaceholders(langConfig.getString(path), placeholders);
     }
 
     public static void sendMessage(CommandSender sender, Message message) {
@@ -59,7 +59,7 @@ public class Lang {
 
             // Get message with used placeholders
             placeholders.put("prefix", prefix);
-            message = Messenger.replacePlaceholders(message, placeholders);
+//            message = MessengerOld.replacePlaceholders(message, placeholders);
 
             Messenger.send(sender, message, placeholders);
         }

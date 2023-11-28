@@ -156,7 +156,7 @@ public class AntiSwearModule {
         // Punish player if warning count is over limit
         int maxWarnings = punishmentWarnings;
         if (maxWarnings != -1 && warnings > maxWarnings) {
-            String command = Messenger.replacePlaceholders(punishmentCommand, new HashMap<>() {{
+            String command = Messenger.parsePluginPlaceholders(punishmentCommand, new HashMap<>() {{
                 put("player", player.getName());
                 put("warnings", warnings);
             }});

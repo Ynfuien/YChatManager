@@ -15,9 +15,16 @@
 # 3. PlaceholderAPI is supported
 
 # 4. Plugin placeholders are within curly brackets - {placeholder}
-# If you add an exclamation mark (!) before placeholder name - {!placeholder},
-# then it won't be formatted in any way. It's useful for user input placeholders,
-# so they won't be formatted by what player enters.
+# And can have additional flags:
+# ! - no formatting
+# @ - no papi
+# # - escaped double quotes (")
+# To use a flag for placeholder, append it before the name - {!placeholder}
+# You can also combine flags, so for example {@#placeholder}, will not parse PAPI placeholders,
+# and will escape double quotes (" will become \").
+# ! - is useful for player input, that is not supposed to be formatted
+# @ - for input that's supposed to be formatted, but not with papi
+# # - for things that can contain double quotes, and you want them in hover/click event
 
 
 # Prefix that will be used for {prefix} placeholder
@@ -48,20 +55,20 @@ command-anti-swear-words-usage: '{prefix} <red>Command usage: /{command} anti-sw
 command-anti-swear-words-fail-no-word: '{prefix} <red>Command usage: /{command} anti-swear words {!argument} <word>'
 command-anti-swear-words-fail-already-exists: '{prefix} <red>This word is already added to the list'
 command-anti-swear-words-fail-doesnt-exist: '{prefix} <red>This word isn''t on the list!'
-command-anti-swear-words-added: '{prefix} <green>Added <aqua>word <yellow>''{word}'' <aqua>to the list!'
-command-anti-swear-words-removed: '{prefix} <red>Removed <aqua>word <yellow>''{word}'' <aqua>from the list!'
+command-anti-swear-words-added: '{prefix} <green>Added <aqua>word <yellow>''{@word}'' <aqua>to the list!'
+command-anti-swear-words-removed: '{prefix} <red>Removed <aqua>word <yellow>''{@word}'' <aqua>from the list!'
 command-anti-swear-words-got:
   - '{prefix} <dark_aqua><bold>Word information:'
-  - '<blue>Word: <aqua>{word}'
-  - '<blue>Normal pattern: <aqua><click:copy_to_clipboard:"{pattern-normal}"><hover:show_text:"<yellow>{pattern-normal}">(hover)</hover></click>'
-  - '<blue>Pattern with replacements: <aqua><click:copy_to_clipboard:"{pattern-replacements}"><hover:show_text:"<yellow>{pattern-replacements}">(hover)</hover></click>'
+  - '<blue>Word: <aqua>{@word}'
+  - '<blue>Normal pattern: <aqua><click:copy_to_clipboard:"{#pattern-normal}"><hover:show_text:"<yellow>{#pattern-normal}">(hover)</hover></click>'
+  - '<blue>Pattern with replacements: <aqua><click:copy_to_clipboard:"{#pattern-replacements}"><hover:show_text:"<yellow>{#pattern-replacements}">(hover)</hover></click>'
   - '<gray>(Click a pattern, to copy it to a clipboard)'
 command-anti-swear-exceptions-usage: '{prefix} <red>Command usage: /{command} anti-swear exceptions <add | remove> <exception>'
 command-anti-swear-exceptions-fail-no-exception: '{prefix} <red>Specify an exception that you want to add or remove!'
 command-anti-swear-exceptions-fail-already-exists: '{prefix} <red>This exception is already added to the list'
 command-anti-swear-exceptions-fail-doesnt-exist: '{prefix} <red>This exception isn''t on the list!'
-command-anti-swear-exceptions-added: '{prefix} <green>Added <aqua>exception <yellow>''{exception}'' <aqua>to the list!'
-command-anti-swear-exceptions-removed: '{prefix} <red>Removed <aqua>exception <yellow>''{exception}'' <aqua>from the list!'
+command-anti-swear-exceptions-added: '{prefix} <green>Added <aqua>exception <yellow>''{@exception}'' <aqua>to the list!'
+command-anti-swear-exceptions-removed: '{prefix} <red>Removed <aqua>exception <yellow>''{@exception}'' <aqua>from the list!'
 
 
 command-message-usage: '{prefix} <gray>Send private message to a player: /{command} <player> <message>'
@@ -87,8 +94,8 @@ command-nick-fail-blank: '{prefix} <red>Provided nickname is blank!'
 command-nick-fail-too-short: '{prefix} <red>Provided nickname is too short!'
 command-nick-fail-too-long: '{prefix} <hover:show_text:"<gray>You probably used color/format/tag that you don''t have access to.<br>Here is your nick, stripped from formats, that you have access to: <white>{!nick}"><red>Provided nickname is too long!</hover>'
 command-nick-fail-player-doesnt-exist: '{prefix} <red>This player was never on the server!'
-command-nick-success: '{prefix} <aqua>Changed nickname to <white>{nick}<reset><aqua>!'
-command-nick-success-other: '{prefix} <aqua>Changed <dark_aqua>{player}''s <aqua>nickname to <white>{nick}<reset><aqua>!'
+command-nick-success: '{prefix} <aqua>Changed nickname to <white>{@nick}<reset><aqua>!'
+command-nick-success-other: '{prefix} <aqua>Changed <dark_aqua>{player}''s <aqua>nickname to <white>{@nick}<reset><aqua>!'
 
 command-clearchat-prefix: '<dark_aqua>[<blue><bold>Clear<aqua>Chat</bold><dark_aqua>]<reset>'
 command-clearchat-info-admins:
