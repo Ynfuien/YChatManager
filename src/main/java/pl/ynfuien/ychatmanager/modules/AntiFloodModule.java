@@ -100,7 +100,7 @@ public class AntiFloodModule {
                 if (consoleLog && !logMatches.containsKey(pattern)) logMatches.put(pattern, new ArrayList<>());
 
                 String replacement = match.replaceFirst(regex.pattern(), pattern.replacement);
-                if (consoleLog) logMatches.get(pattern).add(String.format("'%s' - '%s'", match, replacement));
+                if (consoleLog) logMatches.get(pattern).add(String.format("'%s' >> '%s'", match, replacement));
 
                 message = message.replace(match, replacement);
             }
