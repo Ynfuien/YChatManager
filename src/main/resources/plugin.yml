@@ -19,7 +19,7 @@ commands:
     permission: ychatmanager.command.clearchat
 
   message:
-    aliases: [msg, pm]
+    aliases: [msg, pm, tell]
     description: Sends private message to a player
     permission: ychatmanager.command.message
 
