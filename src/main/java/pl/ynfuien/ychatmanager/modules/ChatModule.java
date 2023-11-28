@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import pl.ynfuien.ychatmanager.YChatManager;
+import pl.ynfuien.ychatmanager.utils.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,7 @@ public class ChatModule {
 
 
     private boolean formattingEnabled;
+    private ChatType formattingType;
     private String formattingFormat;
     private boolean playerFormats;
     private Pattern allowedPattern;
@@ -33,6 +35,15 @@ public class ChatModule {
      */
     public boolean load(ConfigurationSection config) {
         formattingEnabled = config.getBoolean("formatting.enabled");
+
+        String type = config.getString("formatting.type");
+        if (type.equalsIgnoreCase("player")) formattingType = ChatType.PLAYER;
+        else if (type.equalsIgnoreCase("server")) formattingType = ChatType.SERVER;
+        else {
+            Logger.logError(String.format("[Config] [Chat] Provided incorrect value '%s' for the field 'type'. For now will be used type 'player'.", type));
+            formattingType = ChatType.PLAYER;
+        }
+
         formattingFormat = config.getString("formatting.format");
         playerFormats = config.getBoolean("formatting.player-formats");
 
@@ -104,6 +115,10 @@ public class ChatModule {
     }
 
     // Getters
+    public ChatType getFormattingType() {
+        return formattingType;
+    }
+
     public boolean isFormattingEnabled() {
         return formattingEnabled;
     }
@@ -121,5 +136,10 @@ public class ChatModule {
 
     public int getMessageCooldown() {
         return messageCooldown;
+    }
+
+    public enum ChatType {
+        PLAYER,
+        SERVER;
     }
 }

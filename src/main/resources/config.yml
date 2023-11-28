@@ -103,6 +103,22 @@ quit-message:
 chat:
   formatting:
     enabled: true
+
+    # Chat type that you want to have. There are two options available:
+    # 1. player:
+    #    - default type
+    #    - messages still have signatures and can be reported
+    #    - if message is changed (using formats, anti-flood/swear etc.),
+    #      then there will appear a hover message about it, also
+    #      containing the original content
+    #
+    # 2. server:
+    #    - sent messages will be cancelled and resent by the server
+    #    - this will remove chat signatures and therefor disable reporting
+    #    - this can also break some client side mods/bots etc. because of
+    #      different packets being sent for server messages and player chat
+    type: 'player'
+
     # Available placeholders:
     # {nick}, {uuid}, {username}, {displayname}, {message}
     # And if Vault is present:
