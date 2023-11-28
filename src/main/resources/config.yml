@@ -88,7 +88,7 @@ join-message:
   # {prefix}, {suffix}, {group},
   # Set empty ('') to disable join message
   # You can also use PAPI placeholders, and MiniMessage formatting.
-  format: '<light_purple>{displayname}<reset> <dark_purple>joined the game!'
+  format: '<yellow>{displayname}<reset> <yellow>joined the game!</yellow>'
 
 quit-message:
   change: true
@@ -98,7 +98,7 @@ quit-message:
   # {prefix}, {suffix}, {group},
   # Set empty ('') to disable quit message
   # You can also use PAPI placeholders, and MiniMessage formatting.
-  format: '<light_purple>{displayname}<reset> <dark_purple>left the game!'
+  format: '<yellow>{displayname}<reset> <yellow>left the game!</yellow>'
 
 chat:
   formatting:
