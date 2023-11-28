@@ -42,12 +42,13 @@ public class PlayerQuitListener implements Listener {
             commandCooldownsModule.removePlayerFromCache(p.getUniqueId());
         }, 60 * 20);
 
-        // Format quit message
+
+        //// Format quit message
         ConfigurationSection config = instance.getConfig().getConfigurationSection("quit-message");
         if (!config.getBoolean("change")) return;
 
         String format = config.getString("format");
-        if (format.length() == 0) {
+        if (format.isEmpty()) {
             event.quitMessage(null);
             return;
         }

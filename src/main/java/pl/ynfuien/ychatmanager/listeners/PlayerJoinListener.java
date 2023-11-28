@@ -27,7 +27,7 @@ public class PlayerJoinListener implements Listener {
         if (!config.getBoolean("change")) return;
 
         String format = config.getString("format");
-        if (format.length() == 0) {
+        if (format.isEmpty()) {
             event.joinMessage(null);
             return;
         }
