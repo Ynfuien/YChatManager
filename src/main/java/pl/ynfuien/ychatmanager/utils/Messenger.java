@@ -16,7 +16,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Messenger {
-    private final static boolean PAPI_ENABLED = Hooks.isPapiEnabled();
+    private final static boolean PAPI_ENABLED = Hooks.isPluginEnabled(Hooks.Plugin.PAPI);
 
     private final static Pattern PLUGIN_PLACEHOLDER_PATTERN = Pattern.compile("[{]([^{}]+)[}]");
     private final static Pattern PLUGIN_PLACEHOLDER_FLAGS_PATTERN = Pattern.compile("(?<=[{])[!@#]+(?=([^{}]+)[}])");

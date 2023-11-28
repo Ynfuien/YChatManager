@@ -110,7 +110,7 @@ public class ChatFormatter {
 
     // Parses PAPI placeholders in provided component
     public static Component parsePAPI(Player p, Component messageComponent, String message) {
-        if (!Hooks.isPapiEnabled()) return messageComponent;
+        if (!Hooks.isPluginEnabled(Hooks.Plugin.PAPI)) return messageComponent;
         if (!PlaceholderAPI.containsPlaceholders(message)) return messageComponent;
 
         Matcher matcher = PlaceholderAPI.getPlaceholderPattern().matcher(message);
@@ -135,7 +135,7 @@ public class ChatFormatter {
 
     // Parses PAPI placeholders in provided string
     public static String parsePAPI(Player p, String message) {
-        if (!Hooks.isPapiEnabled()) return message;
+        if (!Hooks.isPluginEnabled(Hooks.Plugin.PAPI)) return message;
         if (!PlaceholderAPI.containsPlaceholders(message)) return message;
 
         return PlaceholderAPI.setPlaceholders(p, message);
