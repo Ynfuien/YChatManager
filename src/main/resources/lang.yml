@@ -81,7 +81,7 @@ command-reply-fail-no-receiver: '{prefix} <red>You didn''t message anyone yet!'
 # Placeholders: {message}, {sender-nick}, {sender-uuid}, {sender-username}, {sender-displayname}
 # And also: {receiver-nick}, {receiver-uuid}, {receiver-username}, {receiver-displayname}
 private-message-sent: '<gold>[<red>me <gold>-> <red>{receiver-displayname}<reset><gold>] <white>{!message}'
-private-message-receive: '<gold>[<red>{sender-displayname}<reset> <gold>-> <red>me<gold>] <white>{!message}'
+private-message-received: '<gold>[<red>{sender-displayname}<reset> <gold>-> <red>me<gold>] <white>{!message}'
 private-message-socialspy: '<white>[<gold>SS<white>] <gold>[<red>{sender-displayname}<reset> <gray>-> <red>{receiver-displayname}<gold>] <gray>{!message}'
 
 

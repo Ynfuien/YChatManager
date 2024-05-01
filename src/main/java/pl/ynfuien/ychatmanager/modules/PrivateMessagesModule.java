@@ -86,7 +86,7 @@ public class PrivateMessagesModule {
 
     public void sendMessage(CommandSender receiver, CommandSender sender, HashMap<String, Object> placeholders) {
         Lang.Message.PRIVATE_MESSAGE_SENT.send(sender, placeholders);
-        Lang.Message.PRIVATE_MESSAGE_RECEIVE.send(receiver, placeholders);
+        Lang.Message.PRIVATE_MESSAGE_RECEIVED.send(receiver, placeholders);
         if (receiver instanceof Player) playSound((Player) receiver);
 
         // Social spy
