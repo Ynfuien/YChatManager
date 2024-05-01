@@ -13,7 +13,7 @@ import java.util.List;
 public class AntiSwearSubcommand implements Subcommand {
     @Override
     public String permission() {
-        return "yresizingborders.command.main."+name();
+        return "ychatmanager.command.main."+name();
     }
 
     @Override
