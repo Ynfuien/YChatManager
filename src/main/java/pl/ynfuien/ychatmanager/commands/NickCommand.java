@@ -51,12 +51,11 @@ public class NickCommand implements CommandExecutor, TabCompleter {
 
         // Own nick change
         if (args.length == 1 || !sender.hasPermission(PERMISSION_NICK_OTHERS)) {
-            if (!(sender instanceof Player)) {
+            if (!(sender instanceof Player p)) {
                 Lang.Message.COMMAND_NICK_USAGE_OTHERS.send(sender, placeholders);
                 return true;
             }
 
-            Player p = (Player) sender;
             String inputNick = args[0];
 
             Nickname nick = getNickname(p, p, inputNick);
@@ -172,9 +171,8 @@ public class NickCommand implements CommandExecutor, TabCompleter {
                     if (name.toLowerCase().startsWith(arg1)) completions.add(name);
                 }
             }
-            if (!(sender instanceof Player)) return completions;
+            if (!(sender instanceof Player p)) return completions;
 
-            Player p = (Player) sender;
             String nick = Storage.getNick(p.getUniqueId()).input();
             if (nick.startsWith(arg1)) completions.add(nick);
             return completions;
