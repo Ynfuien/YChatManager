@@ -41,27 +41,6 @@ public class PlaceholderAPIHook extends PlaceholderExpansion {
         return true;
     }
 
-    // Profile
-    // %yrb_profile_<profile>_enabled%
-    // %yrb_profile_<profile>_worlds%
-    // %yrb_profile_<profile>_border.min-size%
-    // %yrb_profile_<profile>_border.max-size%
-    // %yrb_profile_<profile>_resize.by%
-    // %yrb_profile_<profile>_resize.time_seconds%
-    // %yrb_profile_<profile>_resize.time_minutes%
-    // %yrb_profile_<profile>_resize.time_hours%
-    // %yrb_profile_<profile>_resize.interval_seconds%
-    // %yrb_profile_<profile>_resize.interval_minutes%
-    // %yrb_profile_<profile>_resize.interval_hours%
-    // %yrb_profile_<profile>_resize.interval_days%
-    // %yrb_profile_<profile>_resize.last-resize_timestamp%
-    // %yrb_profile_<profile>_resize.last-resize_time%
-    // %yrb_profile_<profile>_resize.last-resize_date%
-    // %yrb_profile_<profile>_resize.last-resize_time-date%
-    // %yrb_profile_<profile>_resize.crontask_expression%
-    // %yrb_profile_<profile>_resize.crontask_description%
-    // %yrb_profile_<profile>_resize.message%
-
     // Nickname
     // %ycm_nickname_formatted%
     // %ycm_nickname_serialized%

@@ -8,10 +8,6 @@ import pl.ynfuien.ychatmanager.storage.Nickname;
 import pl.ynfuien.ychatmanager.storage.Storage;
 
 public class NicknamePlaceholders implements Placeholder {
-//    private final BorderProfiles borderProfiles;
-    public NicknamePlaceholders() {
-//        this.borderProfiles = borderProfiles;
-    }
 
     @Override
     public String name() {
