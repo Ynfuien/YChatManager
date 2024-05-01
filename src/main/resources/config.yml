@@ -81,7 +81,7 @@ displayname:
   format: "{prefix}{nick}{suffix}"
 
 join-message:
-  change: true
+  change: false
   # Available placeholders:
   # {nick}, {uuid}, {username}, {displayname}
   # And if Vault is present:
@@ -91,7 +91,7 @@ join-message:
   format: '<yellow>{displayname}<reset> <yellow>joined the game!</yellow>'
 
 quit-message:
-  change: true
+  change: false
   # Available placeholders:
   # {nick}, {uuid}, {username}, {displayname}
   # And if Vault is present:
@@ -132,7 +132,9 @@ chat:
 
   # RegEx pattern that a message has to match, to be allowed to be sent.
   # Set empty ('') to disable.
-  allowed-pattern: '^[\w!@#$%^&§*()_+{}:"\\|<>?\-=\[\];''\,\./~€ąćżźłóęńśĄĆŻŹŁÓĘŃŚ ]*$'
+  # If you want to allow emojis in the chat, you will have to find/make a better regex,
+  # or just disable this check.
+  allowed-pattern: '^[\p{L}\w!@#$%^&§*()_+{}:"\\|<>?\-=\[\];''\,\.\/~€ ]*$'
 
   # Cooldown in ticks between sending messages.
   # 20 ticks = 1 second
@@ -141,7 +143,7 @@ chat:
 
   anti-flood:
     # Whether to enable anti-flood.
-    enabled: true
+    enabled: false
 
     # Patterns to check for flood
     # - You can add how many you want, by copying existing ones,
@@ -180,7 +182,7 @@ chat:
 
   anti-caps:
     # Whether to enable anti-caps.
-    enabled: true
+    enabled: false
     # Max count of upper case characters in one message.
     # Every next character will be lower-cased.
     max-chars: 10
@@ -190,7 +192,7 @@ chat:
 
   anti-swear:
     # Whether to enable anti-swearing.
-    enabled: true
+    enabled: false
     # Character that will replace each character of a word.
     replacement-char: '*'
     # RegEx patterns that will be used to match swear words.
@@ -232,7 +234,7 @@ chat:
         ż: z
 
 
-    # Check for exceptions from file that will bypass swear words.
+    # Check for exceptions from the file that will bypass swear words.
     check-exceptions: true
     # Whether to check online players usernames,
     # that will bypass anti-swear.
@@ -242,7 +244,7 @@ chat:
 
     # Punishments
     punishment:
-      # Whether to enable warnings and punishments.
+      # Whether to enable warnings and punishments (only for swearing)
       enabled: true
       # Warnings count before punishing.
       # Set 0 to disable warnings and execute punishment right away.
