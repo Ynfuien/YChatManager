@@ -114,7 +114,7 @@ chat:
     #
     # 2. server:
     #    - sent messages will be cancelled and resent by the server
-    #    - this will remove chat signatures and therefor disable reporting
+    #    - this will remove chat signatures and therefore disable reporting
     #    - this can also break some client side mods/bots etc. because of
     #      different packets being sent for server messages and player chat
     type: 'player'
@@ -127,7 +127,7 @@ chat:
     format: '<hover:show_text:"<#9df037>Player: <#f2f244>{username}<reset><br><#9df037>Level: <#f2f244>%player_level%<br><#9df037>Rank: <#f2f244>{group}">{displayname}</hover><reset> <dark_gray>>> <hover:show_text:"<#9df037>Send time: <#f2f244>%server_time_HH:mm:ss%"><gray>{message}</hover>'
     # Whether to allow players, to format their messages with custom formats.
     # Plugin will check for permission for each format.
-    # Disable this, if you don't want ANY player, to be able to color/format their message.
+    # Disable this, if you don't want ANY player, to be able to color/format their messages.
     player-formats: true
 
   # RegEx pattern that a message has to match, to be allowed to be sent.
@@ -148,7 +148,7 @@ chat:
     #   and changing the name, 'pattern' and 'replacement'.
     # - You can also disable any pattern, by commenting it.
     # - Patterns are case-insensitive.
-    # - They will be check in order, that they are here,
+    # - They will be checked in order, that they are here,
     #   so in default case: long-words -> chars -> any-string.
     #   Order does matter, when patters can overlap each other,
     #   like now 'chars' and 'any-string'.
