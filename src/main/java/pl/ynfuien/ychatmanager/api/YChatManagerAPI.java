@@ -39,7 +39,7 @@ public class YChatManagerAPI {
     @Nullable
     public static Nickname getNickname(@NotNull OfflinePlayer player) throws IllegalArgumentException {
         Preconditions.checkArgument(player != null, "Player cannot be null!");
-        if (!player.hasPlayedBefore()) return null;
+        if (!player.hasPlayedBefore() && !player.isOnline()) return null;
 
         return getNickname(player.getUniqueId());
     }

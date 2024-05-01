@@ -82,7 +82,7 @@ public class NickCommand implements CommandExecutor, TabCompleter {
 
         // Nick change for other player
         OfflinePlayer p = Bukkit.getOfflinePlayer(args[0]);
-        if (!p.hasPlayedBefore()) {
+        if (!p.hasPlayedBefore() && !p.isOnline()) {
             placeholders.put("player", args[0]);
             Lang.Message.COMMAND_NICK_FAIL_PLAYER_DOESNT_EXIST.send(sender, placeholders);
             return true;
@@ -187,7 +187,7 @@ public class NickCommand implements CommandExecutor, TabCompleter {
 
         if (!sender.hasPermission(PERMISSION_NICK_OTHERS)) return completions;
         OfflinePlayer p = Bukkit.getOfflinePlayer(args[0]);
-        if (!p.hasPlayedBefore()) return completions;
+        if (!p.hasPlayedBefore() && !p.isOnline()) return completions;
         String arg2 = args[1].toLowerCase();
         String nick = Storage.getNick(p.getUniqueId()).input();
         if (nick.startsWith(arg2)) completions.add(nick);
