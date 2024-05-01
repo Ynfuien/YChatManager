@@ -3,9 +3,9 @@ Plugin for chat management, formatting, anti-spam etc. Requires at least **[Pape
 
 # Features
 ### Chat formatting
-- Custom chat format with MiniMessage, PlaceholdersAPI and Vault.
-- Custom displayname format also with MM, PAPI and Vault.
-- Per permission colors, formats and MiniMessage tags to use in messages.
+- Custom chat format with [MiniMessage](https://docs.advntr.dev/minimessage/index.html), [PlaceholderAPI](https://github.com/PlaceholderAPI/PlaceholderAPI) and [Vault](https://github.com/milkbowl/Vault).
+- Custom displayname format also with [MM](https://docs.advntr.dev/minimessage/index.html), [PAPI](https://github.com/PlaceholderAPI/PlaceholderAPI) and [Vault](https://github.com/milkbowl/Vault).
+- Per permission colors, formats and [MiniMessage](https://docs.advntr.dev/minimessage/index.html) tags to use in messages.
 
 ### Chat culture
 - Anti swear, flood, caps
@@ -18,13 +18,15 @@ Plugin for chat management, formatting, anti-spam etc. Requires at least **[Pape
 - And socialspy for admins
 
 ### Other
-- Custom nicknames using simple command, where every MiniMessage tag and legacy format is available per permission.
+- Custom nicknames using simple command, where every [MiniMessage](https://docs.advntr.dev/minimessage/index.html) tag and legacy format is available per permission.
 - Clear chat command.
 - Join and quit messages, also with an option to disable them.
 - Fully customizable messages with lang file, supporting [PlaceholderAPI](https://github.com/PlaceholderAPI/PlaceholderAPI) and [MiniMessage](https://docs.advntr.dev/minimessage/index.html)
-- PAPI placeholders to use in other plugins [(Click)](https://github.com/Ynfuien/YChatManager/wiki/Placeholders)
 - Commands with tab completions
-- API for developers
+- [API](https://github.com/Ynfuien/YChatManager/wiki/4.-Developer-API) for developers
+
+# Documentation
+You can read about plugin's [permissions](https://github.com/Ynfuien/YChatManager/wiki/2.-Permissions), [placeholders](https://github.com/Ynfuien/YChatManager/wiki/3.-Placeholders) etc. on the [wiki](https://github.com/Ynfuien/YChatManager/wiki) page.
 
 # Media
 ![chat formatting](https://i.imgur.com/HKyHemA.gif)
