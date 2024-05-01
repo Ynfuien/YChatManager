@@ -1,5 +1,6 @@
 package pl.ynfuien.ychatmanager.modules;
 
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.tag.standard.StandardTags;
 import net.milkbowl.vault.chat.Chat;
 import org.bukkit.configuration.ConfigurationSection;
@@ -38,7 +39,9 @@ public class DisplayNameModule {
         String format = ChatFormatter.parseTemplatePlaceholders(this.format, phs);
         format = ColorFormatter.parsePAPI(p, format);
 
-        p.displayName(ColorFormatter.SERIALIZER.deserialize(format));
+        Component displayName = ColorFormatter.SERIALIZER.deserialize(format);
+        p.displayName(displayName);
+        p.playerListName(displayName);
     }
 
     // Getters
