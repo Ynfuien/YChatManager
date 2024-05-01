@@ -16,7 +16,7 @@
         <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <url>https://ynfu.pl</url>
+    <url>https://modrinth.com/plugin/ychatmanager</url>
 
     <build>
         <plugins>
