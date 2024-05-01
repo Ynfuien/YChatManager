@@ -1,6 +1,5 @@
 # YChatManager
-Plugin for chat management, formatting, anti-spam etc. Made and tested on version **1.19.4**, but should also work on higher versions.
-Plugin requires at least [Paper](https://github.com/PaperMC/Paper), won't work on Spigot or Bukkit.
+Plugin for chat management, formatting, anti-spam etc. Requires at least **[Paper](https://github.com/PaperMC/Paper)**, won't work on Spigot or Bukkit. Supports **1.20+**
 
 # Features
 ### Chat formatting
