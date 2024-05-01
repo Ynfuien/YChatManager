@@ -1,6 +1,5 @@
 package pl.ynfuien.ychatmanager.listeners;
 
-import net.kyori.adventure.text.minimessage.tag.standard.StandardTags;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
