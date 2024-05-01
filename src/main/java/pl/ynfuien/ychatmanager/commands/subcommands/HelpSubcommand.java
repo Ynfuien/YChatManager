@@ -47,7 +47,7 @@ public class HelpSubcommand implements Subcommand {
         Lang.Message template = Lang.Message.HELP_COMMAND_TEMPLATE;
         // Get the shortest command alias
         String cmdName = command.getName();
-        if (command.getAliases().size() > 0) {
+        if (!command.getAliases().isEmpty()) {
             String alias = command.getAliases().stream().min(Comparator.comparing(String::length)).get();
             if (alias.length() < cmdName.length()) cmdName = alias;
         }
@@ -62,7 +62,7 @@ public class HelpSubcommand implements Subcommand {
             String usage = subcommand.usage();
 
             template.send(sender, new HashMap<>() {{
-                put("command", String.format("%s %s %s%s", finalCmdName, name(), subCmdName, (usage != null ? " "+usage : "")));
+                put("command", String.format("%s %s%s", finalCmdName, subCmdName, (usage != null ? " "+usage : "")));
                 put("description", description);
             }});
         }
