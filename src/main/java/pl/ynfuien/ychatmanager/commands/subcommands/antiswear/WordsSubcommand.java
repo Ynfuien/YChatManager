@@ -95,9 +95,8 @@ public class WordsSubcommand implements Subcommand {
                 return;
             }
 
-            String regex = pattern.pattern().replace("\"", "\\\"");
-            String regexReplacements = antiSwearModule.getSwearWordsWithReplacement().get(word).pattern().replace("\"", "\\\"");
-            placeholders.put("pattern-normal", MiniMessage.miniMessage().escapeTags(regex));
+            String regexReplacements = antiSwearModule.getSwearWordsWithReplacement().get(word).pattern();
+            placeholders.put("pattern-normal", MiniMessage.miniMessage().escapeTags(pattern.pattern()));
             placeholders.put("pattern-replacements", MiniMessage.miniMessage().escapeTags(regexReplacements));
             Lang.Message.COMMAND_ANTI_SWEAR_WORDS_GOT.send(sender, placeholders);
             return;
