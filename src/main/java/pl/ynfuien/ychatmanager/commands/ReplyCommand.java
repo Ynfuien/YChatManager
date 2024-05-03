@@ -64,8 +64,8 @@ public class ReplyCommand implements CommandExecutor, TabCompleter {
         }
 
 
-        if (sender instanceof Player) displayNameModule.updateDisplayname((Player) sender);
-        if (receiver instanceof Player) displayNameModule.updateDisplayname((Player) receiver);
+        if (sender instanceof Player) displayNameModule.updateDisplayName((Player) sender);
+        if (receiver instanceof Player) displayNameModule.updateDisplayName((Player) receiver);
 
         lastParticipants.put(receiver, sender);
 

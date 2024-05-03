@@ -25,9 +25,9 @@ public class DisplayNameModule {
     }
 
     /**
-     * Updates player's displayname according to the configuration.
+     * Updates player's display name according to the configuration.
      */
-    public void updateDisplayname(Player p) {
+    public void updateDisplayName(Player p) {
         if (!enabled) return;
 
         HashMap<String, Object> phs = ChatFormatter.createPlayerPlaceholders(p, null, false);

@@ -53,7 +53,7 @@ public class PlayerQuitListener implements Listener {
             return;
         }
 
-        displayNameModule.updateDisplayname(p);
+        displayNameModule.updateDisplayName(p);
         format = ChatFormatter.parseTemplatePlaceholders(format, ChatFormatter.createPlayerPlaceholders(p));
         format = ColorFormatter.parsePAPI(p, format);
 

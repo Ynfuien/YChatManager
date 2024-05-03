@@ -67,7 +67,7 @@ public class NickCommand implements CommandExecutor, TabCompleter {
             nick = event.getNickname();
 
             Storage.setNick(p.getUniqueId(), nick);
-            displayNameModule.updateDisplayname(p);
+            displayNameModule.updateDisplayName(p);
 
             placeholders.put("nick", nick.serialized());
             Lang.Message.COMMAND_NICK_SUCCESS.send(sender, placeholders);
@@ -92,7 +92,7 @@ public class NickCommand implements CommandExecutor, TabCompleter {
         nick = event.getNickname();
 
         Storage.setNick(p.getUniqueId(), nick);
-        if (p.isOnline()) displayNameModule.updateDisplayname((Player) p);
+        if (p.isOnline()) displayNameModule.updateDisplayName((Player) p);
 
         placeholders.put("player", p.getName());
         placeholders.put("nick", nick.serialized());

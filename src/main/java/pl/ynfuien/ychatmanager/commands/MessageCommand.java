@@ -60,8 +60,8 @@ public class MessageCommand implements CommandExecutor, TabCompleter {
             }
         }
 
-        if (sender instanceof Player) displayNameModule.updateDisplayname((Player) sender);
-        if (receiver instanceof Player) displayNameModule.updateDisplayname((Player) receiver);
+        if (sender instanceof Player) displayNameModule.updateDisplayName((Player) sender);
+        if (receiver instanceof Player) displayNameModule.updateDisplayName((Player) receiver);
 
         lastParticipants.put(sender, receiver);
         // Setting player that sent message, as a last participant, after 15 ticks.

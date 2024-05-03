@@ -122,9 +122,9 @@ public class YChatManagerAPI {
     }
 
     /**
-     * Updates player's displayname.
+     * Updates player's display name.
      */
-    public static void updateDisplayname(Player player) {
-        getModules().getDisplaynameModule().updateDisplayname(player);
+    public static void updateDisplayName(Player player) {
+        getModules().getDisplaynameModule().updateDisplayName(player);
     }
 }

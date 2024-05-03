@@ -29,7 +29,7 @@ public class AsyncPlayerChatListener implements Listener {
     @EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
     public void onAsyncPlayerChat(AsyncPlayerChatEvent e) {
         Player p = e.getPlayer();
-        displayNameModule.updateDisplayname(p);
+        displayNameModule.updateDisplayName(p);
 
         // Check cooldown
         if (!chatModule.checkCooldown(p)) {

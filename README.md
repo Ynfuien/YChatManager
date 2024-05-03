@@ -4,7 +4,7 @@ Plugin for chat management, formatting, anti-spam etc. Requires at least **[Pape
 # Features
 ### Chat formatting
 - Custom chat format with [MiniMessage](https://docs.advntr.dev/minimessage/index.html), [PlaceholderAPI](https://github.com/PlaceholderAPI/PlaceholderAPI) and [Vault](https://github.com/milkbowl/Vault).
-- Custom displayname format also with [MM](https://docs.advntr.dev/minimessage/index.html), [PAPI](https://github.com/PlaceholderAPI/PlaceholderAPI) and [Vault](https://github.com/milkbowl/Vault).
+- Custom display name format also with [MM](https://docs.advntr.dev/minimessage/index.html), [PAPI](https://github.com/PlaceholderAPI/PlaceholderAPI) and [Vault](https://github.com/milkbowl/Vault).
 - Per permission colors, formats and [MiniMessage](https://docs.advntr.dev/minimessage/index.html) tags to use in messages.
 
 ### Chat culture

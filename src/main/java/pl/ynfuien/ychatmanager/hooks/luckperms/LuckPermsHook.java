@@ -40,7 +40,7 @@ public class LuckPermsHook {
                 Player p = Bukkit.getPlayer(e.getUser().getUniqueId());
                 if (p == null || !p.isOnline()) return;
 
-                displayNameModule.updateDisplayname(p);
+                displayNameModule.updateDisplayName(p);
             }, 0);
         });
 
@@ -61,7 +61,7 @@ public class LuckPermsHook {
                     Collection<Group> groups = user.getInheritedGroups(user.getQueryOptions());
 
                     if (!groups.contains(group)) continue;
-                    displayNameModule.updateDisplayname(p);
+                    displayNameModule.updateDisplayName(p);
                 }
             }, 0);
         });

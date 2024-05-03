@@ -68,7 +68,7 @@ private-messages:
     volume: 0.8
     pitch: 1
 
-# Players displayname formatting
+# Players display name formatting
 displayname:
   enabled: true
   # Available placeholders:
