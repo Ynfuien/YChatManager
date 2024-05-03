@@ -25,6 +25,9 @@ Plugin for chat management, formatting, anti-spam etc. Requires at least **[Pape
 - Commands with tab completions
 - [API](https://github.com/Ynfuien/YChatManager/wiki/4.-Developer-API) for developers
 
+# Download
+You can download the plugin only on [Modrinth](https://modrinth.com/plugin/ychatmanager), or compile it by yourself.
+
 # Documentation
 You can read about plugin's [permissions](https://github.com/Ynfuien/YChatManager/wiki/2.-Permissions), [placeholders](https://github.com/Ynfuien/YChatManager/wiki/3.-Placeholders) etc. on the [wiki](https://github.com/Ynfuien/YChatManager/wiki) page.
 
