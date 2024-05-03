@@ -110,6 +110,14 @@ command-clearchat-info-admins-sender: '<aqua>Cleared chat! <gray>(Only for other
 command-clearchat-info-admins-other-admin: '<aqua>Chat has been cleared by <dark_aqua>{player}<aqua>!'
 command-clearchat-info-players: "{prefix} <aqua>Chat has been cleared!"
 
+command-socialspy-usage: '{prefix} <gray>Toggle social spy: /{command} [enable | disable]'
+command-socialspy-usage-others: '{prefix} <gray>For other player: /{command} <enable | disable> <player>'
+command-socialspy-fail-player-isnt-online: '{prefix} <red>Couldn''t find provided player!'
+command-socialspy-success-enable: '{prefix} <aqua>Social spy has been <green>enabled<aqua>!'
+command-socialspy-success-disable: '{prefix} <aqua>Social spy has been <red>disabled<aqua>!'
+command-socialspy-success-other-enable: '{prefix} <aqua>Social spy for <dark_aqua>{player} <aqua>has been <green>enabled<aqua>!'
+command-socialspy-success-other-disable: '{prefix} <aqua>Social spy for <dark_aqua>{player} <aqua>has been <red>disabled<aqua>!'
+
 command-cooldown: '{prefix} <red>Wait a second before using next command!'
 
 # Placeholders: {nick}, {uuid}, {username}, {displayname}, {message}

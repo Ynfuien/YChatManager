@@ -1,8 +1,11 @@
 package pl.ynfuien.ychatmanager.storage;
 
 import org.bukkit.Bukkit;
+import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 import org.jetbrains.annotations.NotNull;
 import pl.ynfuien.ychatmanager.YChatManager;
 
@@ -13,12 +16,16 @@ public class Storage {
     private static YChatManager instance;
     private static Database database;
     private static HashMap<UUID, Nickname> nicknames = new HashMap<>();
+    private static NamespacedKey socialSpyKey;
 
     public static void setup(YChatManager instance) {
         Storage.instance = instance;
         Storage.database = instance.getDatabase();
+
+        socialSpyKey = new NamespacedKey(instance, "socialspy");
     }
 
+    // Nicknames
     @NotNull
     public static Nickname getNick(@NotNull UUID uuid) {
         if (nicknames.containsKey(uuid)) return nicknames.get(uuid);
@@ -54,6 +61,21 @@ public class Storage {
         return nicknames;
     }
 
+    // Social spy
+    public static void setSocialSpy(Player player, boolean enabled) {
+        PersistentDataContainer pdc = player.getPersistentDataContainer();
+        pdc.set(socialSpyKey, PersistentDataType.BOOLEAN, enabled);
+    }
+
+    public static boolean getSocialSpy(Player player) {
+        PersistentDataContainer pdc = player.getPersistentDataContainer();
+        if (!pdc.has(socialSpyKey)) return false;
+
+        return pdc.get(socialSpyKey, PersistentDataType.BOOLEAN);
+    }
+
+
+    // Database
     public static Database getDatabase() {
         return database;
     }

@@ -8,6 +8,7 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import pl.ynfuien.ychatmanager.chat.ChatFormatter;
+import pl.ynfuien.ychatmanager.storage.Storage;
 import pl.ynfuien.ychatmanager.utils.Lang;
 import pl.ynfuien.ychatmanager.utils.Logger;
 
@@ -93,6 +94,7 @@ public class PrivateMessagesModule {
         for (Player p : Bukkit.getOnlinePlayers()) {
             if (!p.hasPermission("ychatmanager.socialspy")) continue;
             if (p.equals(sender) || p.equals(receiver)) continue;
+            if (!Storage.getSocialSpy(p)) continue;
 
             Lang.Message.PRIVATE_MESSAGE_SOCIALSPY.send(p, placeholders);
         }

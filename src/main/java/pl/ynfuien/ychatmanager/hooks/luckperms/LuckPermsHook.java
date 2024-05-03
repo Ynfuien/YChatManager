@@ -12,7 +12,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitTask;
 import pl.ynfuien.ychatmanager.YChatManager;
 import pl.ynfuien.ychatmanager.modules.DisplayNameModule;
-import pl.ynfuien.ychatmanager.utils.Logger;
 
 import java.util.Collection;
 

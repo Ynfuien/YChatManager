@@ -5,6 +5,7 @@ import org.bukkit.OfflinePlayer;
 import org.jetbrains.annotations.NotNull;
 import pl.ynfuien.ychatmanager.YChatManager;
 import pl.ynfuien.ychatmanager.hooks.placeholderapi.placeholders.NicknamePlaceholders;
+import pl.ynfuien.ychatmanager.hooks.placeholderapi.placeholders.SocialSpyPlaceholders;
 import pl.ynfuien.ychatmanager.hooks.placeholderapi.placeholders.WarningsPlaceholders;
 
 public class PlaceholderAPIHook extends PlaceholderExpansion {
@@ -18,6 +19,7 @@ public class PlaceholderAPIHook extends PlaceholderExpansion {
         placeholders = new Placeholder[] {
             new NicknamePlaceholders(),
             new WarningsPlaceholders(instance.getModules().getAntiSwearModule()),
+            new SocialSpyPlaceholders()
         };
     }
 
@@ -49,6 +51,9 @@ public class PlaceholderAPIHook extends PlaceholderExpansion {
     // Warnings
     // %ycm_warnings%
 
+    // Social spy
+    // %ycm_socialspy%
+
 
     @Override
     public String onRequest(OfflinePlayer p, @NotNull String params) {
@@ -56,7 +61,7 @@ public class PlaceholderAPIHook extends PlaceholderExpansion {
 
         // Loop through placeholders and get that provided by name
         for (Placeholder ph : placeholders) {
-            if (params.startsWith(ph.name() + "_")) {
+            if (params.startsWith(ph.name() + "_") || params.equalsIgnoreCase(ph.name())) {
                 placeholder = ph;
                 break;
             }
@@ -64,9 +69,10 @@ public class PlaceholderAPIHook extends PlaceholderExpansion {
 
         // If provided placeholder is incorrect
         if (placeholder == null) return "incorrect placeholder";
+        String phName = placeholder.name();
 
         // Get placeholder properties from params
-        String id = params.substring(placeholder.name().length() + 1);
+        String id = !params.equalsIgnoreCase(phName) ? params.substring(phName.length() + 1) : "";
         // Get placeholder result
         String result = placeholder.getPlaceholder(id, p);
 

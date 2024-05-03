@@ -73,6 +73,7 @@ public final class YChatManager extends JavaPlugin {
         commands.put("message", new MessageCommand(this));
         commands.put("reply", new ReplyCommand(this));
         commands.put("nick", new NickCommand(this));
+        commands.put("socialspy", new SocialSpyCommand(this));
 
         for (String name : commands.keySet()) {
             CommandExecutor cmd = commands.get(name);

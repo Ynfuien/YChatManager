@@ -13,6 +13,11 @@ commands:
     description: Plugin's main command
     permission: ychatmanager.command.main
 
+  socialspy:
+    aliases: [ss]
+    description: Toggles socialspy
+    permission: ychatmanager.command.socialspy
+
   clearchat:
     aliases: [cc]
     description: Clears chat
