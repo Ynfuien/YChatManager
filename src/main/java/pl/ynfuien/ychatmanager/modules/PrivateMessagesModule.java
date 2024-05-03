@@ -92,7 +92,6 @@ public class PrivateMessagesModule {
 
         // Social spy
         for (Player p : Bukkit.getOnlinePlayers()) {
-            if (!p.hasPermission("ychatmanager.socialspy")) continue;
             if (p.equals(sender) || p.equals(receiver)) continue;
             if (!Storage.getSocialSpy(p)) continue;
 
