@@ -42,7 +42,6 @@ public class LuckPermsHook {
                 if (p == null || !p.isOnline()) return;
 
                 displayNameModule.updateDisplayname(p);
-                Logger.log("<dark_purple>Update for the player " + p.getName());
             }, 0);
         });
 
@@ -57,7 +56,6 @@ public class LuckPermsHook {
             if (groupTask != null) groupTask.cancel();
             groupTask = Bukkit.getScheduler().runTaskLater(instance, () -> {
                 Group group = e.getGroup();
-                Logger.log("<light_purple>Update for the group " + group.getName() + ":");
 
                 for (Player p : Bukkit.getOnlinePlayers()) {
                     User user = lp.getPlayerAdapter(Player.class).getUser(p);
@@ -65,7 +63,6 @@ public class LuckPermsHook {
 
                     if (!groups.contains(group)) continue;
                     displayNameModule.updateDisplayname(p);
-                    Logger.log("<dark_purple>Group update for player " + p.getName());
                 }
             }, 0);
         });
