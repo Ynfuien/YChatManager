@@ -1,3 +1,6 @@
+[![Discord](https://img.shields.io/discord/1236019317208776786?style=flat&logo=discord&label=Discord&color=%235d6af2
+)](https://discord.gg/kZJhKZ48j8)
+
 # YChatManager
 Plugin for chat management, formatting, anti-spam etc. Requires at least **[Paper](https://github.com/PaperMC/Paper)**, won't work on Spigot or Bukkit. Supports **1.20+**
 
