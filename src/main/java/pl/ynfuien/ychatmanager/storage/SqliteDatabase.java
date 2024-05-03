@@ -18,10 +18,7 @@ public class SqliteDatabase extends Database {
         dbName = config.getString("path");
 
         HikariConfig dbConfig = new HikariConfig();
-//        dbConfig.setDriverClassName("org.sqlite.JDBC");
         dbConfig.setJdbcUrl(String.format("jdbc:sqlite:%s/%s", YChatManager.getInstance().getDataFolder().getPath(), config.getString("path")));
-
-
 
         try {
             dbSource = new HikariDataSource(dbConfig);
