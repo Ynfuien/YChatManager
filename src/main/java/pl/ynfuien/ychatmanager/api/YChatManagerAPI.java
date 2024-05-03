@@ -98,6 +98,30 @@ public class YChatManagerAPI {
     }
 
     /**
+     * Gets social spy state of a player.
+     * @param player Player
+     * @return True or false
+     * @throws IllegalArgumentException In case of null argument
+     */
+    public static boolean getSocialSpyState(@NotNull Player player) throws IllegalArgumentException {
+        Preconditions.checkArgument(player != null, "Player cannot be null!");
+
+        return Storage.getSocialSpy(player);
+    }
+
+    /**
+     * Changes social spy state of a player.
+     * @param player Player
+     * @param state New state
+     * @throws IllegalArgumentException In case of null arguments
+     */
+    public static void setSocialSpyState(@NotNull Player player, boolean state) throws IllegalArgumentException {
+        Preconditions.checkArgument(player != null, "Player cannot be null!");
+
+        Storage.setSocialSpy(player, state);
+    }
+
+    /**
      * Updates player's displayname.
      */
     public static void updateDisplayname(Player player) {
