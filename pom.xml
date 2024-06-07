@@ -40,6 +40,16 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
+                            <filters>
+                                <filter>
+                                    <artifact>*.*</artifact>
+                                    <excludes>
+                                        <exclude>module-info.class</exclude>
+                                        <exclude>META-INF/*.MF</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+
                             <createDependencyReducedPom>false</createDependencyReducedPom>
                             <relocations>
                                 <!--    HikariCP    -->
