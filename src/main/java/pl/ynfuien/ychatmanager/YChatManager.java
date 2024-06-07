@@ -1,5 +1,6 @@
 package pl.ynfuien.ychatmanager;
 
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.TabCompleter;
@@ -55,6 +56,9 @@ public final class YChatManager extends JavaPlugin {
 
         setupCommands();
         registerListeners();
+
+        // BStats
+        new Metrics(this, 22171);
 
         Logger.log("Plugin successfully <green>enabled<white>!");
     }
