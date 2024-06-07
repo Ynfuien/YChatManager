@@ -44,7 +44,7 @@
                             <relocations>
                                 <relocation>
                                     <pattern>com.zaxxer.hikari</pattern>
-                                    <shadedPattern>pl.ynfuien.ychatmanager.libs.com.zaxxer.hikari</shadedPattern>
+                                    <shadedPattern>pl.ynfuien.ychatmanager.libs.hikari</shadedPattern>
                                 </relocation>
                             </relocations>
                         </configuration>
