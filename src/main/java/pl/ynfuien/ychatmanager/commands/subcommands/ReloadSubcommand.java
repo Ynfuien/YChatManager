@@ -4,9 +4,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import pl.ynfuien.ychatmanager.Lang;
 import pl.ynfuien.ychatmanager.YChatManager;
 import pl.ynfuien.ychatmanager.commands.Subcommand;
-import pl.ynfuien.ychatmanager.utils.Lang;
 
 import java.util.ArrayList;
 import java.util.List;

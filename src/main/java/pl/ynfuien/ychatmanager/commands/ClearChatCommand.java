@@ -9,9 +9,9 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import pl.ynfuien.ychatmanager.Lang;
 import pl.ynfuien.ychatmanager.YChatManager;
-import pl.ynfuien.ychatmanager.chat.ColorFormatter;
-import pl.ynfuien.ychatmanager.utils.Lang;
+import pl.ynfuien.ydevlib.messages.colors.ColorFormatter;
 
 import java.util.ArrayList;
 import java.util.HashMap;

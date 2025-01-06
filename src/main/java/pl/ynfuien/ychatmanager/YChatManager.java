@@ -9,9 +9,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.ynfuien.ychatmanager.commands.*;
-import pl.ynfuien.ychatmanager.config.ConfigHandler;
-import pl.ynfuien.ychatmanager.config.ConfigName;
-import pl.ynfuien.ychatmanager.config.ConfigObject;
 import pl.ynfuien.ychatmanager.hooks.Hooks;
 import pl.ynfuien.ychatmanager.listeners.*;
 import pl.ynfuien.ychatmanager.modules.Modules;
@@ -19,8 +16,9 @@ import pl.ynfuien.ychatmanager.storage.Database;
 import pl.ynfuien.ychatmanager.storage.MysqlDatabase;
 import pl.ynfuien.ychatmanager.storage.SqliteDatabase;
 import pl.ynfuien.ychatmanager.storage.Storage;
-import pl.ynfuien.ychatmanager.utils.Lang;
-import pl.ynfuien.ychatmanager.utils.Logger;
+import pl.ynfuien.ydevlib.config.ConfigHandler;
+import pl.ynfuien.ydevlib.config.ConfigObject;
+import pl.ynfuien.ydevlib.messages.YLogger;
 
 import java.util.HashMap;
 import java.util.List;
@@ -37,11 +35,11 @@ public final class YChatManager extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-        Logger.setPrefix("<dark_aqua>[<aqua>Y<white>ChatManager<dark_aqua>] <white>");
+        YLogger.setup("<dark_aqua>[<aqua>Y<white>ChatManager<dark_aqua>] <white>", getComponentLogger());
 
         loadConfigs();
         loadLang();
-        config = configHandler.get(ConfigName.CONFIG);
+        config = configHandler.getConfigObject(ConfigName.CONFIG);
 
 
         ConfigurationSection dbConfig = config.getConfig().getConfigurationSection("database");
@@ -60,14 +58,14 @@ public final class YChatManager extends JavaPlugin {
         // BStats
         new Metrics(this, 22171);
 
-        Logger.log("Plugin successfully <green>enabled<white>!");
+        YLogger.info("Plugin successfully <green>enabled<white>!");
     }
 
     @Override
     public void onDisable() {
         if (database != null) database.close();
 
-        Logger.log("Plugin successfully <red>disabled<white>!");
+        YLogger.info("Plugin successfully <red>disabled<white>!");
     }
 
     private void setupCommands() {
@@ -106,7 +104,7 @@ public final class YChatManager extends JavaPlugin {
         if (type.equalsIgnoreCase("sqlite")) return new SqliteDatabase();
         else if (type.equalsIgnoreCase("mysql")) return new MysqlDatabase();
 
-        Logger.logError("Database type is incorrect! Available database types: sqlite, mysql");
+        YLogger.error("Database type is incorrect! Available database types: sqlite, mysql");
         return null;
     }
 

@@ -4,7 +4,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.bukkit.configuration.ConfigurationSection;
 import pl.ynfuien.ychatmanager.YChatManager;
-import pl.ynfuien.ychatmanager.utils.Logger;
+import pl.ynfuien.ydevlib.messages.YLogger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,7 +23,7 @@ public class SqliteDatabase extends Database {
         try {
             dbSource = new HikariDataSource(dbConfig);
         } catch (Exception e) {
-            Logger.logError("Plugin couldn't connect to a database! Please check connection data, because some plugin's functionality requires the database!");
+            YLogger.error("Plugin couldn't connect to a database! Please check connection data, because some plugin's functionality requires the database!");
             return false;
         }
 
@@ -37,7 +37,7 @@ public class SqliteDatabase extends Database {
         try (Connection conn = dbSource.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.execute();
         } catch (SQLException e) {
-            Logger.logError(String.format("Couldn't create table '%s' in database '%s'", nicknamesTableName, dbName));
+            YLogger.error(String.format("Couldn't create table '%s' in database '%s'", nicknamesTableName, dbName));
             e.printStackTrace();
             return false;
         }

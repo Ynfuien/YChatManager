@@ -8,11 +8,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 import pl.ynfuien.ychatmanager.YChatManager;
 import pl.ynfuien.ychatmanager.chat.ChatFormatter;
-import pl.ynfuien.ychatmanager.chat.ColorFormatter;
 import pl.ynfuien.ychatmanager.modules.CommandCooldownsModule;
 import pl.ynfuien.ychatmanager.modules.DisplayNameModule;
 import pl.ynfuien.ychatmanager.modules.Modules;
 import pl.ynfuien.ychatmanager.storage.Storage;
+import pl.ynfuien.ydevlib.messages.colors.ColorFormatter;
 
 public class PlayerQuitListener implements Listener {
     private final YChatManager instance;

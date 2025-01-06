@@ -2,7 +2,7 @@ package pl.ynfuien.ychatmanager.modules;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import pl.ynfuien.ychatmanager.YChatManager;
-import pl.ynfuien.ychatmanager.utils.Logger;
+import pl.ynfuien.ydevlib.messages.YLogger;
 
 public class Modules {
     private final YChatManager instance;
@@ -35,7 +35,7 @@ public class Modules {
         privateMessagesModule.load(config.getConfigurationSection("private-messages"));
         chatModule.load(config.getConfigurationSection("chat"));
         if (!antiFloodModule.load(config.getConfigurationSection("chat.anti-flood"))) {
-            Logger.logWarning("Anti-Flood module couldn't be loaded!");
+            YLogger.warn("Anti-Flood module couldn't be loaded!");
             return false;
         }
         antiCapsModule.load(config.getConfigurationSection("chat.anti-caps"));

@@ -1,7 +1,7 @@
 package pl.ynfuien.ychatmanager.modules;
 
 import org.bukkit.configuration.ConfigurationSection;
-import pl.ynfuien.ychatmanager.utils.Logger;
+import pl.ynfuien.ydevlib.messages.YLogger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -74,7 +74,7 @@ public class AntiFloodModule {
     }
 
     private void logError(String message) {
-        Logger.logWarning("[Anti-Flood] " + message);
+        YLogger.warn("[Anti-Flood] " + message);
     }
 
     /**
@@ -108,12 +108,12 @@ public class AntiFloodModule {
 
         // Console log
         if (logMatches.size() > 0) {
-            Logger.log("<white>Flood in the message:");
+            YLogger.info("<white>Flood in the message:");
             for (FloodPattern pattern : logMatches.keySet()) {
-                Logger.log(String.format("<gray>Pattern '%s':", pattern.name));
+                YLogger.info(String.format("<gray>Pattern '%s':", pattern.name));
                 for (String match : logMatches.get(pattern)) {
                     // Using placeholder, so potential color formats, entered by a player, won't be used.
-                    Logger.log("<gray>- <dark_gray>{!match}", new HashMap<>() {{put("match", match);}});
+                    YLogger.info("<gray>- <dark_gray>{!match}", new HashMap<>() {{put("match", match);}});
                 }
             }
         }

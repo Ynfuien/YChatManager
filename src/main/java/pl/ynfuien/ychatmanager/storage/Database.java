@@ -2,7 +2,7 @@ package pl.ynfuien.ychatmanager.storage;
 
 import com.zaxxer.hikari.HikariDataSource;
 import org.bukkit.configuration.ConfigurationSection;
-import pl.ynfuien.ychatmanager.utils.Logger;
+import pl.ynfuien.ydevlib.messages.YLogger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -31,7 +31,7 @@ public abstract class Database {
 
             return resultSet.next();
         } catch (SQLException e) {
-            Logger.logWarning(String.format("Couldn't retrieve data from table '%s'.", nicknamesTableName));
+            YLogger.warn(String.format("Couldn't retrieve data from table '%s'.", nicknamesTableName));
             e.printStackTrace();
             return false;
         }
@@ -47,7 +47,7 @@ public abstract class Database {
             if (resultSet.next()) return new Nickname(resultSet.getString("serialized"), resultSet.getString("input"));
             return null;
         } catch (SQLException e) {
-            Logger.logWarning(String.format("Couldn't retrieve data from table '%s'.", nicknamesTableName));
+            YLogger.warn(String.format("Couldn't retrieve data from table '%s'.", nicknamesTableName));
             e.printStackTrace();
             return null;
         }
@@ -67,7 +67,7 @@ public abstract class Database {
             stmt.execute();
 
         } catch (SQLException e) {
-            Logger.logWarning(String.format("Couldn't save data to table '%s'.", nicknamesTableName));
+            YLogger.warn(String.format("Couldn't save data to table '%s'.", nicknamesTableName));
             e.printStackTrace();
             return false;
         }

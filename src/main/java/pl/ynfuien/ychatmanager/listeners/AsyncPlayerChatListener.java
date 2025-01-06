@@ -5,11 +5,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import pl.ynfuien.ychatmanager.Lang;
 import pl.ynfuien.ychatmanager.YChatManager;
 import pl.ynfuien.ychatmanager.modules.ChatModule;
 import pl.ynfuien.ychatmanager.modules.DisplayNameModule;
 import pl.ynfuien.ychatmanager.modules.Modules;
-import pl.ynfuien.ychatmanager.utils.Lang;
 
 public class AsyncPlayerChatListener implements Listener {
     private final YChatManager instance;

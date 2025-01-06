@@ -3,14 +3,14 @@ package pl.ynfuien.ychatmanager.modules;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
+import pl.ynfuien.ychatmanager.ConfigName;
+import pl.ynfuien.ychatmanager.Lang;
 import pl.ynfuien.ychatmanager.YChatManager;
 import pl.ynfuien.ychatmanager.chat.ChatFormatter;
-import pl.ynfuien.ychatmanager.config.ConfigHandler;
-import pl.ynfuien.ychatmanager.config.ConfigName;
-import pl.ynfuien.ychatmanager.config.ConfigObject;
-import pl.ynfuien.ychatmanager.utils.Lang;
-import pl.ynfuien.ychatmanager.utils.Logger;
-import pl.ynfuien.ychatmanager.utils.Messenger;
+import pl.ynfuien.ydevlib.config.ConfigHandler;
+import pl.ynfuien.ydevlib.config.ConfigObject;
+import pl.ynfuien.ydevlib.messages.Messenger;
+import pl.ynfuien.ydevlib.messages.YLogger;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -84,8 +84,8 @@ public class AntiSwearModule {
         swearWordExceptions.clear();
 
         ConfigHandler configHandler = instance.getConfigHandler();
-        swearConfig = configHandler.get(ConfigName.SWEAR_WORDS);
-        exceptionsConfig = configHandler.get(ConfigName.SWEAR_WORD_EXCEPTIONS);
+        swearConfig = configHandler.getConfigObject(ConfigName.SWEAR_WORDS);
+        exceptionsConfig = configHandler.getConfigObject(ConfigName.SWEAR_WORD_EXCEPTIONS);
         List<String> words = swearConfig.getConfig().getStringList("list");
         words.sort(Comparator.comparingInt(String::length).reversed());
         swearWordExceptions = exceptionsConfig.getConfig().getStringList("list");
@@ -221,17 +221,17 @@ public class AntiSwearModule {
 
         // Console log
         if (consoleLog && logMatches.size() > 0) {
-            Logger.log("<gray>Swears in the message:");
+            YLogger.info("<gray>Swears in the message:");
             for (String word : logMatches.keySet()) {
                 List<String> matches = logMatches.get(word);
 
                 if (matches.size() > 1) {
-                    Logger.log(String.format("<gray>Word <dark_red>'%s'<gray>:", word));
+                    YLogger.info(String.format("<gray>Word <dark_red>'%s'<gray>:", word));
                     for (String match : matches) {
                         // Using placeholder, so potential color formats, entered by a player, won't be used.
                         String log = "<white>- <yellow>{!match}'";
                         if (swearWordExceptions.contains(match.toLowerCase())) log += " <gold>[exception]";
-                        Logger.log(log, new HashMap<>() {{put("match", match);}});
+                        YLogger.info(log, new HashMap<>() {{put("match", match);}});
                     }
                     continue;
                 }
@@ -239,7 +239,7 @@ public class AntiSwearModule {
                 String match = matches.get(0);
                 String log = String.format("<white>- <gray>word <dark_red>'%s' <gray>- match <yellow>'{!match}'", word);
                 if (swearWordExceptions.contains(match.toLowerCase())) log += " <gold>[exception]";
-                Logger.log(log, new HashMap<>() {{put("match", match);}});
+                YLogger.info(log, new HashMap<>() {{put("match", match);}});
             }
         }
 

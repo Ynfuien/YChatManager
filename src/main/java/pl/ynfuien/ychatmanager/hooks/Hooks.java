@@ -5,7 +5,7 @@ import pl.ynfuien.ychatmanager.YChatManager;
 import pl.ynfuien.ychatmanager.hooks.luckperms.LuckPermsHook;
 import pl.ynfuien.ychatmanager.hooks.placeholderapi.PlaceholderAPIHook;
 import pl.ynfuien.ychatmanager.hooks.vault.VaultHook;
-import pl.ynfuien.ychatmanager.utils.Logger;
+import pl.ynfuien.ydevlib.messages.YLogger;
 
 public class Hooks {
     private static PlaceholderAPIHook papiHook = null;
@@ -16,23 +16,23 @@ public class Hooks {
             papiHook = new PlaceholderAPIHook(instance);
             if (!papiHook.register()) {
                 papiHook = null;
-                Logger.logError("[Hooks] Something went wrong while registering PlaceholderAPI hook!");
+                YLogger.error("[Hooks] Something went wrong while registering PlaceholderAPI hook!");
             }
             else {
-                Logger.log("[Hooks] Successfully registered hook for PlaceholderAPI!");
+                YLogger.info("[Hooks] Successfully registered hook for PlaceholderAPI!");
             }
         }
 
         // Register Vault hook
         if (isPluginEnabled(Plugin.VAULT)) {
             new VaultHook();
-            Logger.log("[Hooks] Successfully registered hook for Vault!");
+            YLogger.info("[Hooks] Successfully registered hook for Vault!");
         }
 
         // Register LuckPerms hook
         if (isPluginEnabled(Plugin.LUCKPERMS)) {
             new LuckPermsHook(instance);
-            Logger.log("[Hooks] Successfully registered hook for LuckPerms!");
+            YLogger.info("[Hooks] Successfully registered hook for LuckPerms!");
         }
     }
 

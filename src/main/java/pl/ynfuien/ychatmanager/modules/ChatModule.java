@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import pl.ynfuien.ychatmanager.YChatManager;
-import pl.ynfuien.ychatmanager.utils.Logger;
+import pl.ynfuien.ydevlib.messages.YLogger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +41,7 @@ public class ChatModule {
         if (type.equalsIgnoreCase("player")) formattingType = ChatType.PLAYER;
         else if (type.equalsIgnoreCase("server")) formattingType = ChatType.SERVER;
         else {
-            Logger.logError(String.format("[Config] [Chat] Provided incorrect value '%s' for the field 'type'. For now will be used type 'player'.", type));
+            YLogger.error(String.format("[Config] [Chat] Provided incorrect value '%s' for the field 'type'. For now will be used type 'player'.", type));
             formattingType = ChatType.PLAYER;
         }
 

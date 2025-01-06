@@ -4,7 +4,7 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import pl.ynfuien.ychatmanager.chat.ChatFormatter;
-import pl.ynfuien.ychatmanager.chat.ColorFormatter;
+import pl.ynfuien.ydevlib.messages.colors.ColorFormatter;
 
 import java.util.HashMap;
 

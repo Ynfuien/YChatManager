@@ -8,9 +8,9 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import pl.ynfuien.ychatmanager.Lang;
 import pl.ynfuien.ychatmanager.YChatManager;
 import pl.ynfuien.ychatmanager.storage.Storage;
-import pl.ynfuien.ychatmanager.utils.Lang;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -6,12 +6,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import pl.ynfuien.ychatmanager.Lang;
 import pl.ynfuien.ychatmanager.YChatManager;
 import pl.ynfuien.ychatmanager.commands.subcommands.HelpSubcommand;
 import pl.ynfuien.ychatmanager.commands.subcommands.ReloadSubcommand;
 import pl.ynfuien.ychatmanager.commands.subcommands.VersionSubcommand;
 import pl.ynfuien.ychatmanager.commands.subcommands.antiswear.AntiSwearSubcommand;
-import pl.ynfuien.ychatmanager.utils.Lang;
 
 import java.util.ArrayList;
 import java.util.Arrays;

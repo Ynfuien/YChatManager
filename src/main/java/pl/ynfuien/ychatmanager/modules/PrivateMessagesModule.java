@@ -7,10 +7,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
+import pl.ynfuien.ychatmanager.Lang;
 import pl.ynfuien.ychatmanager.chat.ChatFormatter;
 import pl.ynfuien.ychatmanager.storage.Storage;
-import pl.ynfuien.ychatmanager.utils.Lang;
-import pl.ynfuien.ychatmanager.utils.Logger;
+import pl.ynfuien.ydevlib.messages.YLogger;
 
 import java.util.HashMap;
 
@@ -72,7 +72,7 @@ public class PrivateMessagesModule {
     }
 
     private void logError(String message) {
-        Logger.logWarning("[Private-Messages] " + message);
+        YLogger.warn("[Private-Messages] " + message);
     }
 
     /**

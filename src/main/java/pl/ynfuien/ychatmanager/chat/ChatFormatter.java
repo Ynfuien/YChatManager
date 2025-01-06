@@ -2,7 +2,6 @@ package pl.ynfuien.ychatmanager.chat;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextReplacementConfig;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import net.milkbowl.vault.chat.Chat;
 import org.bukkit.command.CommandSender;
@@ -10,6 +9,7 @@ import org.bukkit.entity.Player;
 import pl.ynfuien.ychatmanager.hooks.vault.VaultHook;
 import pl.ynfuien.ychatmanager.modules.ChatModule;
 import pl.ynfuien.ychatmanager.storage.Storage;
+import pl.ynfuien.ydevlib.messages.colors.ColorFormatter;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -82,7 +82,7 @@ public class ChatFormatter {
             put(pp+"nick", p != null ? Storage.getNick(p.getUniqueId()).serialized() : name);
             put(pp+"uuid", p != null ? p.getUniqueId() : name);
             put(pp+"username", name);
-            put(pp+"displayname", p != null ? MiniMessage.miniMessage().serialize(p.displayName()) : name);
+            put(pp+"displayname", p != null ? ColorFormatter.SERIALIZER.serialize(p.displayName()) : name);
 
             put("prefix", "");
             put("suffix", "");

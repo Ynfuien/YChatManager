@@ -13,13 +13,13 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import pl.ynfuien.ychatmanager.Lang;
 import pl.ynfuien.ychatmanager.YChatManager;
 import pl.ynfuien.ychatmanager.api.event.NicknameChangeEvent;
-import pl.ynfuien.ychatmanager.chat.ColorFormatter;
 import pl.ynfuien.ychatmanager.modules.DisplayNameModule;
 import pl.ynfuien.ychatmanager.storage.Nickname;
 import pl.ynfuien.ychatmanager.storage.Storage;
-import pl.ynfuien.ychatmanager.utils.Lang;
+import pl.ynfuien.ydevlib.messages.colors.ColorFormatter;
 
 import java.util.ArrayList;
 import java.util.HashMap;

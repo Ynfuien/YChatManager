@@ -8,8 +8,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import pl.ynfuien.ychatmanager.YChatManager;
 import pl.ynfuien.ychatmanager.chat.ChatFormatter;
-import pl.ynfuien.ychatmanager.chat.ColorFormatter;
 import pl.ynfuien.ychatmanager.modules.DisplayNameModule;
+import pl.ynfuien.ydevlib.messages.colors.ColorFormatter;
 
 public class PlayerJoinListener implements Listener {
     private final YChatManager instance;

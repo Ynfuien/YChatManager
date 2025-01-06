@@ -2,10 +2,10 @@ package pl.ynfuien.ychatmanager.commands.subcommands.antiswear;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import pl.ynfuien.ychatmanager.Lang;
 import pl.ynfuien.ychatmanager.YChatManager;
 import pl.ynfuien.ychatmanager.commands.Subcommand;
 import pl.ynfuien.ychatmanager.modules.AntiSwearModule;
-import pl.ynfuien.ychatmanager.utils.Lang;
 
 import java.util.ArrayList;
 import java.util.Arrays;

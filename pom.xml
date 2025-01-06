@@ -71,6 +71,11 @@
                                     <pattern>org.bstats</pattern>
                                     <shadedPattern>pl.ynfuien.ychatmanager.libs.bstats</shadedPattern>
                                 </relocation>
+                                <!--    YDevLib    -->
+                                <relocation>
+                                    <pattern>org.bstats</pattern>
+                                    <shadedPattern>pl.ynfuien.ychatmanager.libs.ydevlib</shadedPattern>
+                                </relocation>
                             </relocations>
                         </configuration>
                     </execution>
@@ -114,7 +119,7 @@
             <scope>provided</scope>
         </dependency>
 
-<!--        PlaceholderAPI-->
+        <!--        PlaceholderAPI-->
         <dependency>
             <groupId>me.clip</groupId>
             <artifactId>placeholderapi</artifactId>
@@ -122,7 +127,7 @@
             <scope>provided</scope>
         </dependency>
 
-<!--        Vault-->
+        <!--        Vault-->
         <dependency>
             <groupId>com.github.MilkBowl</groupId>
             <artifactId>VaultAPI</artifactId>
@@ -130,7 +135,7 @@
             <scope>provided</scope>
         </dependency>
 
-<!--        Database connection-->
+        <!--        Database connection-->
         <dependency>
             <groupId>com.zaxxer</groupId>
             <artifactId>HikariCP</artifactId>
@@ -138,7 +143,7 @@
             <scope>compile</scope>
         </dependency>
 
-<!--        Luck Perms-->
+        <!--        Luck Perms-->
         <dependency>
             <groupId>net.luckperms</groupId>
             <artifactId>api</artifactId>
@@ -151,6 +156,14 @@
             <groupId>org.bstats</groupId>
             <artifactId>bstats-bukkit</artifactId>
             <version>3.0.2</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!--        Dev library -->
+        <dependency>
+            <groupId>com.github.Ynfuien</groupId>
+            <artifactId>YDevLib</artifactId>
+            <version>1.0.2</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

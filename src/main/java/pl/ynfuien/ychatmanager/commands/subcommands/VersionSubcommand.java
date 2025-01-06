@@ -3,9 +3,9 @@ package pl.ynfuien.ychatmanager.commands.subcommands;
 import io.papermc.paper.plugin.configuration.PluginMeta;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import pl.ynfuien.ychatmanager.Lang;
 import pl.ynfuien.ychatmanager.YChatManager;
 import pl.ynfuien.ychatmanager.commands.Subcommand;
-import pl.ynfuien.ychatmanager.utils.Lang;
 
 import java.util.HashMap;
 import java.util.List;

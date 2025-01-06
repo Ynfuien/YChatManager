@@ -5,9 +5,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import pl.ynfuien.ychatmanager.Lang;
 import pl.ynfuien.ychatmanager.YChatManager;
 import pl.ynfuien.ychatmanager.modules.CommandCooldownsModule;
-import pl.ynfuien.ychatmanager.utils.Lang;
 
 public class PlayerCommandPreprocessListener implements Listener {
     private final YChatManager instance;
