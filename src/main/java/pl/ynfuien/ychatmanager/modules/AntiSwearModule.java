@@ -14,6 +14,7 @@ import pl.ynfuien.ychatmanager.utils.Messenger;
 
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -106,14 +107,11 @@ public class AntiSwearModule {
 
     private final HashMap<UUID, Integer> swearWarnings = new HashMap<>();
     /**
-     * Applies anti swear to a provided message. Warns or punishes player if needed. Sends alert to online admins and to console.
+     * Applies anti swear to a provided message. Warns or punishes player if needed. Sends alert to online admins and to the console.
      * @param player Player that sent a message
      * @return Censored message
      */
     public String apply(Player player, String message) {
-//        if (checkUsernames) return ChatModule.checkUsernames(message, this::censureSwears);
-//        return censureSwears(message);
-
         String censored = checkUsernames ? ChatModule.checkUsernames(message, this::censureSwears) : censureSwears(message);
 
         // If player swore
@@ -141,16 +139,18 @@ public class AntiSwearModule {
         swearWarnings.put(uuid, warnings);
 
         // Set scheduler to remove warning after provided time
-        Bukkit.getScheduler().runTaskLaterAsynchronously(instance, () -> {
-            Integer warningCount = swearWarnings.get(uuid);
-            if (warningCount == null) return;
-            if (warningCount <= 1) {
-                swearWarnings.remove(uuid);
-                return;
-            }
+        Bukkit.getAsyncScheduler().runDelayed(instance, (task) -> {
+            synchronized (swearWarnings) {
+                Integer warningCount = swearWarnings.get(uuid);
+                if (warningCount == null) return;
+                if (warningCount <= 1) {
+                    swearWarnings.remove(uuid);
+                    return;
+                }
 
-            swearWarnings.put(uuid, warningCount - 1);
-        }, (long) punishmentWarningExpire * 60 * 20);
+                swearWarnings.put(uuid, warningCount - 1);
+            }
+        }, punishmentWarningExpire, TimeUnit.MINUTES);
 
 
         // Punish player if warning count is over limit
@@ -160,7 +160,7 @@ public class AntiSwearModule {
                 put("player", player.getName());
                 put("warnings", warnings);
             }});
-            Bukkit.getScheduler().runTask(instance, () -> {
+            Bukkit.getGlobalRegionScheduler().run(instance, (task) -> {
                 Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
             });
             return null;
@@ -168,9 +168,9 @@ public class AntiSwearModule {
 
         if (maxWarnings != 0) {
             // Using scheduler to sent warning after player's message
-            Bukkit.getScheduler().runTaskLaterAsynchronously(instance, () -> {
+            Bukkit.getAsyncScheduler().runDelayed(instance, (task) -> {
                 Lang.Message.CHAT_ANTI_SWEAR_WARNING.send(player);
-            }, 1);
+            }, 50, TimeUnit.MILLISECONDS);
         }
 
         return censored;
@@ -327,7 +327,7 @@ public class AntiSwearModule {
 
         list.add(word);
         swearConfig.getConfig().set("list", list);
-        Bukkit.getScheduler().runTaskAsynchronously(instance, () -> {
+        Bukkit.getAsyncScheduler().runNow(instance, (task) -> {
             swearConfig.save();
         });
 
@@ -348,7 +348,7 @@ public class AntiSwearModule {
 
         list.remove(word);
         swearConfig.getConfig().set("list", list);
-        Bukkit.getScheduler().runTaskAsynchronously(instance, () -> {
+        Bukkit.getAsyncScheduler().runNow(instance, (task) -> {
             swearConfig.save();
         });
 
@@ -369,7 +369,7 @@ public class AntiSwearModule {
 
         list.add(exception);
         exceptionsConfig.getConfig().set("list", list);
-        Bukkit.getScheduler().runTaskAsynchronously(instance, () -> {
+        Bukkit.getAsyncScheduler().runNow(instance, (task) -> {
             exceptionsConfig.save();
         });
 
@@ -389,7 +389,7 @@ public class AntiSwearModule {
 
         list.remove(exception);
         exceptionsConfig.getConfig().set("list", list);
-        Bukkit.getScheduler().runTaskAsynchronously(instance, () -> {
+        Bukkit.getAsyncScheduler().runNow(instance, (task) -> {
             exceptionsConfig.save();
         });
 

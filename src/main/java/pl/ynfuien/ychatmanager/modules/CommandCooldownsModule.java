@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 public class CommandCooldownsModule {
     private final YChatManager instance;
@@ -46,9 +47,11 @@ public class CommandCooldownsModule {
         if (anyCommandCooldown > 0) {
             if (anyCommandCooldowns.contains(uuid)) return false;
             anyCommandCooldowns.add(uuid);
-            Bukkit.getScheduler().runTaskLaterAsynchronously(instance, () -> {
-                anyCommandCooldowns.remove(uuid);
-            }, anyCommandCooldown);
+            Bukkit.getAsyncScheduler().runDelayed(instance, (task) -> {
+                synchronized (anyCommandCooldowns) {
+                    anyCommandCooldowns.remove(uuid);
+                }
+            }, (long) anyCommandCooldown * 50, TimeUnit.MILLISECONDS);
         }
 
         // The same command cooldown
@@ -59,11 +62,13 @@ public class CommandCooldownsModule {
             if (commands.contains(command)) return false;
 
             commands.add(command);
-            Bukkit.getScheduler().runTaskLaterAsynchronously(instance, () -> {
-                if (!sameCommandCooldowns.containsKey(uuid)) return;
+            Bukkit.getAsyncScheduler().runDelayed(instance, (task) -> {
+                synchronized (sameCommandCooldowns) {
+                    if (!sameCommandCooldowns.containsKey(uuid)) return;
 
-                sameCommandCooldowns.get(uuid).remove(command);
-            }, sameCommandCooldown);
+                    sameCommandCooldowns.get(uuid).remove(command);
+                }
+            }, (long) sameCommandCooldown * 50, TimeUnit.MILLISECONDS);
         }
 
         return true;

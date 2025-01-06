@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class MessageCommand implements CommandExecutor, TabCompleter {
     private static YChatManager instance = null;
@@ -69,11 +70,11 @@ public class MessageCommand implements CommandExecutor, TabCompleter {
         // /r message will still go to previous last participant
         CommandSender previousParticipant = lastParticipants.get(receiver);
         CommandSender finalReceiver = receiver;
-        Bukkit.getScheduler().runTaskLaterAsynchronously(instance, () -> {
+        Bukkit.getAsyncScheduler().runDelayed(instance, (task) -> {
             if (previousParticipant != null && !previousParticipant.equals(lastParticipants.get(finalReceiver))) return;
 
             lastParticipants.put(finalReceiver, sender);
-        }, 15);
+        }, 15 * 50, TimeUnit.MILLISECONDS);
 
         String message = String.join(" ", Arrays.copyOfRange(args, 1, args.length));
 

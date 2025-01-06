@@ -9,6 +9,7 @@ import pl.ynfuien.ychatmanager.utils.Logger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import java.util.regex.Pattern;
 
@@ -82,7 +83,7 @@ public class ChatModule {
         return message;
     }
 
-    private List<UUID> cooldowns = new ArrayList<>();
+    private final List<UUID> cooldowns = new ArrayList<>();
 
     /**
      * Checks message cooldown for a provided player.
@@ -96,9 +97,11 @@ public class ChatModule {
         if (cooldowns.contains(uuid)) return false;
 
         cooldowns.add(uuid);
-        Bukkit.getScheduler().runTaskLaterAsynchronously(instance, () -> {
-            cooldowns.remove(uuid);
-        }, messageCooldown);
+        Bukkit.getAsyncScheduler().runDelayed(instance, (task) -> {
+            synchronized (cooldowns) {
+                cooldowns.remove(uuid);
+            }
+        }, (long) messageCooldown * 50, TimeUnit.MILLISECONDS);
 
         return true;
     }
