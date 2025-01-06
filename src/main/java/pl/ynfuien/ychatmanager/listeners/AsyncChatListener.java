@@ -42,6 +42,7 @@ public class AsyncChatListener implements Listener {
 
             // Why that instead of Bukkit.broadcast()?
             // Because Folia is broken.
+            Bukkit.getConsoleSender().sendMessage(formattedMessage);
             for (Player p : Bukkit.getOnlinePlayers()) {
                 if (!p.hasPermission("bukkit.broadcast.user")) continue;
                 p.sendMessage(formattedMessage);
