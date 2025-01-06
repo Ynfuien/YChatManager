@@ -6,6 +6,7 @@ softdepend: [ PlaceholderAPI, Vault, LuckPerms ]
 authors: [ Ynfuien ]
 description: '${project.description}'
 website: '${project.url}'
+folia-supported: true
 
 commands:
   ychatmanager:
@@ -40,7 +41,5 @@ commands:
 permissions:
   ychatmanager.command.message:
     default: true
-    children:
-      vanished: false
   ychatmanager.command.reply:
     default: true

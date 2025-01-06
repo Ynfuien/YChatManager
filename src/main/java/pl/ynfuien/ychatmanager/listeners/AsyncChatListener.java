@@ -3,6 +3,7 @@ package pl.ynfuien.ychatmanager.listeners;
 import io.papermc.paper.event.player.AsyncChatEvent;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -27,7 +28,7 @@ public class AsyncChatListener implements Listener {
         if (!chatModule.isFormattingEnabled()) return;
 
         // Parse the message
-        Component formattedMessage = chatFormatter.format( e.getPlayer(), e.message());
+        Component formattedMessage = chatFormatter.format(e.getPlayer(), e.message());
         // Cancel if it's null. Probably player sent just a color format, without any actual message
         if (formattedMessage == null) {
             e.setCancelled(true);
@@ -39,7 +40,12 @@ public class AsyncChatListener implements Listener {
         if (chatModule.getFormattingType().equals(ChatModule.ChatType.SERVER)) {
             e.setCancelled(true);
 
-            Bukkit.broadcast(formattedMessage);
+            // Why that instead of Bukkit.broadcast()?
+            // Because Folia is broken.
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                if (!p.hasPermission("bukkit.broadcast.user")) continue;
+                p.sendMessage(formattedMessage);
+            }
             return;
         }
 

@@ -48,7 +48,7 @@ public class Storage {
         Player p = Bukkit.getPlayer(uuid);
         if (p != null && p.isOnline()) nicknames.put(uuid, nick);
 
-        Bukkit.getScheduler().runTaskAsynchronously(instance, () -> {
+        Bukkit.getAsyncScheduler().runNow(instance, (task) -> {
             database.setNick(uuid, nick);
         });
     }
