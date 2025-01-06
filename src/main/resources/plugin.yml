@@ -3,33 +3,33 @@ version: '${project.version}'
 main: pl.ynfuien.ychatmanager.YChatManager
 api-version: '1.20'
 softdepend: [ PlaceholderAPI, Vault, LuckPerms ]
-author: Ynfuien
+authors: [ Ynfuien ]
 description: '${project.description}'
 website: '${project.url}'
 
 commands:
   ychatmanager:
-    aliases: [ycm]
+    aliases: [ ycm ]
     description: Plugin's main command
     permission: ychatmanager.command.main
 
   socialspy:
-    aliases: [ss]
+    aliases: [ ss ]
     description: Toggles socialspy
     permission: ychatmanager.command.socialspy
 
   clearchat:
-    aliases: [cc]
+    aliases: [ cc ]
     description: Clears chat
     permission: ychatmanager.command.clearchat
 
   message:
-    aliases: [msg, pm, tell]
+    aliases: [ msg, pm, tell ]
     description: Sends private message to a player
     permission: ychatmanager.command.message
 
   reply:
-    aliases: [r]
+    aliases: [ r ]
     description: Replies last messaged player
     permission: ychatmanager.command.reply
 
