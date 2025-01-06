@@ -1,6 +1,5 @@
 package pl.ynfuien.ychatmanager.listeners;
 
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -27,23 +26,19 @@ public class PlayerQuitListener implements Listener {
         this.commandCooldownsModule = modules.getCommandCooldownsModule();
     }
 
-    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerQuit(PlayerQuitEvent event) {
         // Remove nickname from cache
         Player p = event.getPlayer();
-        Bukkit.getScheduler().runTaskLaterAsynchronously(instance, () -> {
-            if (p.isOnline()) return;
-            Storage.removeNickFromCache(p.getUniqueId());
-        }, 10 * 20);
+        Storage.removeNickFromCache(p.getUniqueId());
 
         // Remove command cooldowns from cache
-        Bukkit.getScheduler().runTaskLaterAsynchronously(instance, () -> {
-            if (p.isOnline()) return;
-            commandCooldownsModule.removePlayerFromCache(p.getUniqueId());
-        }, 60 * 20);
+        commandCooldownsModule.removePlayerFromCache(p.getUniqueId());
 
 
         //// Format quit message
+        if (event.quitMessage() == null) return;
+
         ConfigurationSection config = instance.getConfig().getConfigurationSection("quit-message");
         if (!config.getBoolean("change")) return;
 

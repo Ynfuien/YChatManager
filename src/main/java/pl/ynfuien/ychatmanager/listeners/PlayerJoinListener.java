@@ -20,12 +20,14 @@ public class PlayerJoinListener implements Listener {
         this.displayNameModule = instance.getModules().getDisplaynameModule();
     }
 
-    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player p = event.getPlayer();
         displayNameModule.updateDisplayName(p);
 
         // Format join message
+        if (event.joinMessage() == null) return;
+
         ConfigurationSection config = instance.getConfig().getConfigurationSection("join-message");
         if (!config.getBoolean("change")) return;
 
