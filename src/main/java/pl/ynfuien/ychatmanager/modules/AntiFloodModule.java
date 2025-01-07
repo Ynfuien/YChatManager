@@ -82,6 +82,7 @@ public class AntiFloodModule {
      * @return Message with shortened words if needed
      */
     public String apply(String message) {
+        if (!enabled) return message;
         if (checkUsernames) return ChatModule.checkUsernames(message, this::shortenFlood);
 
         return shortenFlood(message);

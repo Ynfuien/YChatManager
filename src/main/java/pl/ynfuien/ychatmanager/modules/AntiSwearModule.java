@@ -112,6 +112,8 @@ public class AntiSwearModule {
      * @return Censored message
      */
     public String apply(Player player, String message) {
+        if (!enabled) return message;
+
         String censored = checkUsernames ? ChatModule.checkUsernames(message, this::censureSwears) : censureSwears(message);
 
         // If player swore

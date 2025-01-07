@@ -25,6 +25,7 @@ public class AntiCapsModule {
      * @return Message with lowered characters if needed
      */
     public String apply(String message) {
+        if (!enabled) return message;
         if (maxChars < 0) return message;
 
         if (checkUsernames) return ChatModule.checkUsernames(message, this::shortenCaps);
