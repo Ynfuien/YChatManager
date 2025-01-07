@@ -37,7 +37,7 @@ commands:
     min-length: 2
     max-length: 16
 
-  # Cooldowns in ticks betweeen executing commands.
+  # Cooldowns in ticks between executing commands.
   #  - 20 ticks = 1 second
   #  - Set any cooldown to 0 to disable it.
   #  - same-command cooldown is supposed to be higher
