@@ -8,6 +8,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 import pl.ynfuien.ychatmanager.commands.*;
 import pl.ynfuien.ychatmanager.hooks.Hooks;
 import pl.ynfuien.ychatmanager.listeners.*;
@@ -92,6 +93,8 @@ public final class YChatManager extends JavaPlugin {
             new PlayerCommandPreprocessListener(this),
             new PlayerJoinListener(this),
             new PlayerQuitListener(this),
+            new PlayerDeathListener(this),
+            new TameableDeathMessageListener(this),
         };
 
         for (Listener listener : listeners) {
@@ -156,7 +159,8 @@ public final class YChatManager extends JavaPlugin {
         return configHandler;
     }
 
-    public FileConfiguration getConfig() {
+    @Override
+    public @NotNull FileConfiguration getConfig() {
         return config.getConfig();
     }
 

@@ -100,6 +100,29 @@ quit-message:
   # You can also use PAPI placeholders, and MiniMessage formatting.
   format: '<yellow>{displayname}<reset> <yellow>left the game!</yellow>'
 
+death-message:
+  players:
+    change: false
+    # Available placeholders:
+    # {original-message}, {nick}, {uuid},
+    # {username}, {displayname}
+    # And if Vault is present:
+    # {prefix}, {suffix}, {group},
+    # Set empty ('') to disable death message
+    # You can also use PAPI placeholders, and MiniMessage formatting.
+    format: '<red>{original-message}</red>'
+
+  tamed-pets:
+    change: false
+    # Available placeholders:
+    # {original-message}, {pet-name}, {pet-uuid}, {pet-type},
+    # {owner-nick}, {owner-uuid}, {owner-username}, {owner-displayname}
+    # And if Vault is present:
+    # {owner-prefix}, {owner-suffix}, {owner-group},
+    # Set empty ('') to disable death message
+    # You can also use PAPI placeholders, and MiniMessage formatting.
+    format: '<red>{original-message}</red>'
+
 chat:
   formatting:
     enabled: true
