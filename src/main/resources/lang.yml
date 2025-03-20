@@ -30,8 +30,6 @@
 # Prefix that will be used for {prefix} placeholder
 prefix: '<dark_aqua>[<bold><aqua>Y<white>ChatManager</bold><dark_aqua>]<reset>'
 
-plugin-is-reloading: '{prefix} <red>Plugin is reloading, wait a second..'
-
 commands-incorrect: '{prefix} <red>Incorrect command! Use /{command} help, for help.'
 commands-no-permission: '{prefix} <red>You don''t have permission for this command!'
 

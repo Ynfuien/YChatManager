@@ -11,7 +11,6 @@ import java.util.HashMap;
 public class Lang extends LangBase {
     public enum Message implements LangBase.Message {
         PREFIX,
-        PLUGIN_IS_RELOADING,
         COMMANDS_INCORRECT,
         COMMANDS_NO_PERMISSION,
         HELP_NO_COMMANDS,

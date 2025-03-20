@@ -31,8 +31,6 @@ public final class YChatManager extends JavaPlugin {
     private final Modules modules = new Modules(this);
     private Database database = null;
 
-    private boolean reloading = false;
-
     @Override
     public void onEnable() {
         instance = this;
@@ -127,8 +125,6 @@ public final class YChatManager extends JavaPlugin {
     }
 
     public boolean reloadPlugin() {
-        reloading = true;
-
         try {
             // Reload all configs
             configHandler.reloadAll();
@@ -139,16 +135,10 @@ public final class YChatManager extends JavaPlugin {
             instance.loadLang();
         } catch (Exception e) {
             e.printStackTrace();
-            reloading = false;
             return false;
         }
 
-        reloading = false;
         return true;
-    }
-
-    public boolean isReloading() {
-        return reloading;
     }
 
     public static YChatManager getInstance() {

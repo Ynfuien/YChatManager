@@ -7,7 +7,6 @@ import org.bukkit.command.TabCompleter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import pl.ynfuien.ychatmanager.Lang;
-import pl.ynfuien.ychatmanager.YChatManager;
 import pl.ynfuien.ychatmanager.commands.subcommands.HelpSubcommand;
 import pl.ynfuien.ychatmanager.commands.subcommands.ReloadSubcommand;
 import pl.ynfuien.ychatmanager.commands.subcommands.VersionSubcommand;
@@ -29,12 +28,6 @@ public class MainCommand implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
-        // Return if plugin is reloading
-        if (YChatManager.getInstance().isReloading()) {
-            Lang.Message.PLUGIN_IS_RELOADING.send(sender);
-            return true;
-        }
-
         // Run help subcommand if none is provided
         if (args.length == 0) {
             helpCommand.run(sender, command, label, args);
@@ -66,7 +59,6 @@ public class MainCommand implements CommandExecutor, TabCompleter {
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
         List<String> completions = new ArrayList<>();
 
-        if (YChatManager.getInstance().isReloading()) return completions;
         if (args.length == 0) return completions;
 
 
