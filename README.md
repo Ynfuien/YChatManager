@@ -2,7 +2,7 @@
 )](https://discord.gg/kZJhKZ48j8)
 
 # YChatManager
-Plugin for chat management, formatting, anti-spam etc. Requires at least **[Paper](https://github.com/PaperMC/Paper)**, won't work on Spigot or Bukkit. Supports **1.20+**
+Plugin for chat management, formatting, anti-spam etc. Requires at least **[Paper](https://github.com/PaperMC/Paper)**, won't work on Spigot or Bukkit.
 
 # Features
 ### Chat formatting
@@ -23,7 +23,7 @@ Plugin for chat management, formatting, anti-spam etc. Requires at least **[Pape
 ### Other
 - Custom nicknames using simple command, where every [MiniMessage](https://docs.advntr.dev/minimessage/index.html) tag and legacy format is available per permission.
 - Clear chat command.
-- Join and quit messages, also with an option to disable them.
+- Join, quit and death messages, also with an option to disable them.
 - Fully customizable messages with lang file, supporting [PlaceholderAPI](https://github.com/PlaceholderAPI/PlaceholderAPI) and [MiniMessage](https://docs.advntr.dev/minimessage/index.html)
 - Commands with tab completions
 - [API](https://github.com/Ynfuien/YChatManager/wiki/4.-Developer-API) for developers
@@ -42,6 +42,11 @@ You can read about plugin's [permissions](https://github.com/Ynfuien/YChatManage
 ![custom nicknames](https://i.imgur.com/yicaNtI.gif)
 ![clearchat - player](https://i.imgur.com/XkXn8VC.gif)
 ![clearchat - admin](https://i.imgur.com/WuQeogZ.gif)
+
+# Integrity with other plugins
+I make these plugins for me, according to my needs, meaning, I don't search for every possible plugin that I don't care about, that could be somehow better integrated with mine. But, if you care about better integration between this plugin and some other, then just let me know through [Discord](https://discord.gg/kZJhKZ48j8) or GitHub and I will see what I can do.
+
+Same goes for any features that you think may be missing. If something isn't outside the scope of the plugin, then I'll probably do it.
 
 # License
 This project uses [GNU GPLv3](https://github.com/Ynfuien/YChatManager/main/blob/LICENSE) license.
